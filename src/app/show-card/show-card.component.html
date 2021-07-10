@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-image">
+        <figure class="image is-2by3">
+
+            <img [src]="imageSource"
+                alt="Placeholder image">
+        </figure>
+    </div>
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <p class="title is-4">{{ show.movieTitle }}</p>
+                <p class="subtitle is-6">{{ show.title }}</p>
+            </div>
+        </div>
+
+        <div class="content">
+            {{ show.plot}}
+            <ng-container *ngIf="hasImdbPage">
+                <br />
+                <a [href]="imdbUrl"
+                    class="
+                    button
+                    is-link
+                    is-fullwidth
+                    mt-2
+                    is-outlined">View IMDB</a>
+            </ng-container>
+        </div>
+    </div>
+    <ng-container *ngIf="hasRatings">
+        <footer class="card-footer">
+            <div *ngFor='let rating of show.ratings'
+                ngClass="card-footer-item has-text-centered">
+                {{rating.Source}}<br />
+                {{ rating.Value }}
+            </div>
+        </footer>
+    </ng-container>
+</div>

@@ -1,0 +1,52 @@
+@charset "utf-8";
+
+$purple: #8A4D76;
+$pink: #FA7C91;
+$brown: #757763;
+$beige-light: #D0D1CD;
+$beige-lighter: #EFF0EB;
+
+$grey-dark: $brown;
+$grey-light: $beige-light;
+$primary: $purple;
+$link: $beige-light;
+
+$color-bg-darkest: #13141b;
+$color-bg-darker: #1b1e27;
+$color-bg-dark: #232837;
+$color-bg-med: #2f3646;
+$color-bg-light: #455066;
+$color-bg-lighter: #5b6882;
+
+$color-text-dark: #72809b;
+$color-text-med-dark: #919db5;
+$color-text-med: #a0aabe;
+$color-text-med-light: #d9dce1;
+$color-text-light: #f0f1f6;
+$color-text-lighter: #fff;
+
+$body-background-color: $color-bg-darker;
+$body-color: $beige-lighter;
+
+html,
+body{
+    background: $color-bg-darker;
+}
+
+.button{
+    &.is-link.is-outlined{
+        color: $color-text-light;
+    }
+}
+
+.title {
+    color: $color-text-light;
+}
+.subtitle {
+    color: $color-text-med;
+}
+       //
+.card {
+    background-color: $color-bg-dark;
+    color: $body-color;
+}

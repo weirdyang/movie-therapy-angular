@@ -1,0 +1,40 @@
+<section class="section">
+    <div class="container">
+        <ng-container *ngIf="(filter$ | async) as filter">
+            <div class="field is-grouped">
+                <p class="control">
+                    <button (click)="setFilter('movie')"
+                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
+                        Movies
+                    </button>
+                </p>
+                <p class="control">
+                    <button (click)="setFilter('series')"
+                        [ngClass]="{'button is-info': true, 'is-outlined' : filter !== 'series' }">
+                        TV Shows
+                    </button>
+                </p>
+                <p class="control">
+                    <button (click)="setFilter('all')"
+                        [ngClass]="{'button is-danger': true, 'is-outlined' : filter !== 'all' }">
+                        All
+                    </button>
+                </p>
+
+            </div>
+        </ng-container>
+
+
+    </div>
+</section>
+<div class="container is-dark">
+    <div id="main">
+        <ng-container *ngIf='allShows | async as movies'>
+            <div class="columns is-multiline">
+                <app-show-card class="column is-4"
+                    *ngFor='let item of movies'
+                    [show]=item></app-show-card>
+            </div>
+        </ng-container>
+    </div>
+</div>
