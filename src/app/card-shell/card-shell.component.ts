@@ -16,7 +16,7 @@ export class CardShellComponent implements OnInit {
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
     .pipe(
-      debounce(_ => interval(1500)),
+      debounce(_ => interval(500)),
       shareReplay(1)
     );
 
