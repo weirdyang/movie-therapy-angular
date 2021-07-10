@@ -13,7 +13,7 @@ import { listAnimation } from './list-animation';
 })
 export class CardShellComponent implements OnInit {
 
-  private filterSubject = new BehaviorSubject<string>("series");
+  private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
     .pipe(
       debounce(_ => interval(1500)),
@@ -22,6 +22,27 @@ export class CardShellComponent implements OnInit {
 
   setFilter(filterString: string) {
     this.filterSubject.next(filterString);
+  }
+
+  private searchSubject = new BehaviorSubject<string>("");
+  search$ = this.searchSubject.asObservable()
+    .pipe(
+      debounce(_ => interval(1000)),
+      shareReplay(1)
+    );
+
+  private _genre = "";
+  get genre() {
+    return this._genre;
+  }
+  set genre(value) {
+    this._genre = value;
+  }
+  updateSearch(input: string) {
+    console.log(input);
+    console.log(this.genre);
+    this.genre = input;
+    this.searchSubject.next(this.genre);
   }
   constructor(private showService: ShowService) { }
 
@@ -35,17 +56,23 @@ export class CardShellComponent implements OnInit {
     }
     return array;
   }
-  allShows = combineLatest([this.movies$, this.shows$, this.filter$])
+  allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
-      map(([movies, shows, filter]) => {
+      map(([movies, shows, filter, search]) => {
+        let consolidated: Show[] = [];
         if (filter === 'all') {
-          return this.shuffleArray([...movies, ...shows]);
+          consolidated = this.shuffleArray([...movies, ...shows]);
         };
-        if (filter === 'series') {
-          return this.shuffleArray([...shows]);
-        };
-        return this.shuffleArray([...movies]);
 
+        consolidated = filter === 'series'
+          ? this.shuffleArray([...shows])
+          : this.shuffleArray([...movies]);
+
+        if (search.length !== 0) {
+          return consolidated.filter(item =>
+            item.data.Genre?.toLowerCase().includes(search.toLowerCase()));
+        }
+        return consolidated;
       })
     );
   ngOnInit(): void {

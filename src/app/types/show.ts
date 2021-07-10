@@ -15,5 +15,6 @@ export interface Rating {
 
 export interface OMDBResult {
     Year: string;
-    Type: string
+    Type: string;
+    Genre: string;
 }

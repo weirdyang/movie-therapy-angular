@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardShellRoutingModule } from './card-shell-routing.module';
 import { CardShellComponent } from './card-shell.component';
 import { ShowCardModule } from '../show-card/show-card.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ShowCardModule } from '../show-card/show-card.module';
   imports: [
     CommonModule,
     CardShellRoutingModule,
-    ShowCardModule
+    ShowCardModule,
+    FormsModule
   ]
 })
 export class CardShellModule { }

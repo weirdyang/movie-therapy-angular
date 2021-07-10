@@ -18,14 +18,12 @@ export class ShowService {
   getMovies(): Observable<Show[]> {
     return this.http.get<Show[]>(this.moviesUrl)
       .pipe(
-        tap(data => console.log('Movies: ', JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
   getTvShows(): Observable<Show[]> {
     return this.http.get<Show[]>(this.showsUrl)
       .pipe(
-        tap(data => console.log('Shows: ', JSON.stringify(data))),
         catchError(this.handleError)
       );
   }
