@@ -10,7 +10,7 @@
                 </p>
                 <p class="control">
                     <button (click)="setFilter('series')"
-                        [ngClass]="{'button is-info': true, 'is-outlined' : filter !== 'series' }">
+                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
                         TV Shows
                     </button>
                 </p>
@@ -43,7 +43,8 @@
 <div class="container is-dark">
     <div id="main">
         <ng-container *ngIf='allShows | async as movies'>
-            <div class="columns is-multiline">
+            <div class="columns is-multiline"
+                [@listAnimation]=movies.length>
                 <app-show-card class="column is-4"
                     *ngFor='let item of movies'
                     [show]=item></app-show-card>

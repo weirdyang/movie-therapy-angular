@@ -39,8 +39,6 @@ export class CardShellComponent implements OnInit {
     this._genre = value;
   }
   updateSearch(input: string) {
-    console.log(input);
-    console.log(this.genre);
     this.genre = input;
     this.searchSubject.next(this.genre);
   }

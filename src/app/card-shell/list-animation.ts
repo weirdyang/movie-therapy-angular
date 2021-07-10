@@ -1,21 +1,31 @@
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
-// https://angular.io/api/animations/stagger
+import { trigger, transition, style, animate, query, stagger, animation } from '@angular/animations';
+// https://angular.io/api/animations/listAnimation
 export const listAnimation = trigger('listAnimation', [
-    transition(':enter, * => 0, * => -1', []),
-    transition(':increment', [
-        query(':enter', [
-            style({ opacity: 0, width: '0px' }),
-            stagger(50, [
-                animate('300ms ease-out', style({ opacity: 1, width: '*' })),
-            ]),
-        ], { optional: true })
-    ]),
-    transition(':decrement', [
-        query(':leave', [
-            stagger(50, [
-                animate('300ms ease-out', style({ opacity: 0, width: '0px' })),
-            ]),
+    transition(
+        ':enter',
+        animation([
+            style({
+                transform: 'translate(200px,0)',
+            }),
+            animate(
+                '0.3s cubic-bezier(0.59, 0.32, 0.38, 1.13)',
+                style({
+                    transform: 'translate(0)',
+                })
+            ),
         ])
-    ]),
+    ),
+    transition(
+        ':leave',
+        animation([
+            style({ transform: 'translate(0)' }),
+            animate(
+                '0.3s cubic-bezier(0.59, 0.32, 0.38, 1.13)',
+                style({
+                    transform: 'translate(-200px,0)',
+                })
+            ),
+        ])
+    ),
 ]);
 
