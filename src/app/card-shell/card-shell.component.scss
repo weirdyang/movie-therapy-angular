@@ -15,6 +15,9 @@
     width: 0;
     height: 0;
 }
-.column {
-    height: 800px;
+cdk-virtual-scroll-viewport{
+    .column {
+        height: 800px;
+    }
 }
+

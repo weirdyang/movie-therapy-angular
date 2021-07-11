@@ -1,42 +1,44 @@
 <section class="section pt-2 mt-0 mb-0 pb-2">
     <div class="container">
         <ng-container *ngIf="(filter$ | async) as filter">
-            <div class="field is-grouped mb-2">
-                <p class="control">
-                    <button (click)="setFilter('movie')"
-                        aria-label="Click to only display movies"
-                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
-                        Movies
-                    </button>
-                </p>
-                <p class="control">
-                    <button (click)="setFilter('series')"
-                        aria-label="Click to only display tv-shows"
-                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
-                        TV Shows
-                    </button>
-                </p>
-                <p class="control">
-                    <button (click)="setFilter('all')"
-                        aria-label="Click to display all"
-                        [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
-                        All
-                    </button>
-                </p>
+            <div class="columns is-centered is-gapless">
+                <div class="field is-grouped mb-2 column is-4">
+                    <p class="control">
+                        <button (click)="setFilter('movie')"
+                            aria-label="Click to only display movies"
+                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
+                            Movies
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button (click)="setFilter('series')"
+                            aria-label="Click to only display tv-shows"
+                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
+                            TV Shows
+                        </button>
+                    </p>
+                    <p class="control">
+                        <button (click)="setFilter('all')"
+                            aria-label="Click to display all"
+                            [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
+                            All
+                        </button>
+                    </p>
 
-            </div>
-            <div class="field">
-                <p class="control">
-                    <input type="search"
-                        id="site-search"
-                        class="input"
-                        [ngModel]="genre"
-                        (ngModelChange)="updateSearch($event)"
-                        placeholder="Filter by genre"
-                        name="q"
-                        aria-label="Search shows by gener">
+                </div>
+                <div class="field column">
+                    <p class="control">
+                        <input type="search"
+                            id="site-search"
+                            class="input"
+                            [ngModel]="genre"
+                            (ngModelChange)="updateSearch($event)"
+                            placeholder="Filter by genre"
+                            name="q"
+                            aria-label="Search shows by gener">
 
-                </p>
+                    </p>
+                </div>
             </div>
         </ng-container>
 
@@ -59,8 +61,6 @@
                         [show]=item></app-show-card>
                 </div>
             </cdk-virtual-scroll-viewport>
-
-
         </ng-container>
     </section>
 </div>
