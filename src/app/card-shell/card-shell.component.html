@@ -19,7 +19,7 @@
                 <p class="control">
                     <button (click)="setFilter('all')"
                         aria-label="Click to display all"
-                        [ngClass]="{'button is-danger': true, 'is-outlined' : filter !== 'all' }">
+                        [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
                         All
                     </button>
                 </p>
@@ -32,7 +32,7 @@
                         class="input"
                         [ngModel]="genre"
                         (ngModelChange)="updateSearch($event)"
-                        placeholder="Search for genre"
+                        placeholder="Filter by genre"
                         name="q"
                         aria-label="Search shows by gener">
 

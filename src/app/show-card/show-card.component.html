@@ -32,7 +32,7 @@
         <footer class="card-footer">
             <div *ngFor='let rating of show.ratings'
                 ngClass="card-footer-item has-text-centered">
-                {{rating.Source}}<br />
+                {{rating.Source | rating }}<br />
                 {{ rating.Value }}
             </div>
         </footer>

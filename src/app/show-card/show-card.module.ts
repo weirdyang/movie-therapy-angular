@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ShowCardComponent } from './show-card.component';
+import { RatingPipeModule } from '../rating-pipe/rating-pipe.module';
 
 
 
@@ -9,7 +10,8 @@ import { ShowCardComponent } from './show-card.component';
     ShowCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RatingPipeModule
   ],
   exports: [
     ShowCardComponent

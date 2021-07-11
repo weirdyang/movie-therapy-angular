@@ -10,6 +10,9 @@ import { RatingPipe } from './rating.pipe';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    RatingPipe
   ]
 })
 export class RatingPipeModule { }
