@@ -51,10 +51,11 @@
                 minBufferPx="400"
                 maxBufferPx="600"
                 class="scroll-viewport">
-                <div class="columns is-multiline"
+                <div *cdkVirtualFor='let row of movies'
+                    class="columns is-multiline"
                     [@listAnimation]=movies.length>
                     <app-show-card class="column is-4"
-                        *cdkVirtualFor='let item of movies'
+                        *ngFor='let item of row'
                         [show]=item></app-show-card>
                 </div>
             </cdk-virtual-scroll-viewport>

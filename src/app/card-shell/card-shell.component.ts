@@ -47,6 +47,17 @@ export class CardShellComponent {
   movies$ = this.showService.getMovies().pipe(shareReplay(1));
 
   shows$ = this.showService.getTvShows().pipe(shareReplay(1));
+
+  // https://github.com/angular/components/issues/10114
+  chunkArray(array: Show[], chunk: number): Show[][] {
+    const tempArray: Show[][] = [];
+
+    for (let i = 0, j = array.length; i < j; i += chunk) {
+      tempArray.push(array.slice(i, i + chunk));
+    }
+
+    return tempArray
+  }
   shuffleArray(array: Show[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -71,7 +82,8 @@ export class CardShellComponent {
             item.data.Genre?.toLowerCase().includes(search.toLowerCase()));
         }
         return consolidated;
-      })
+      }),
+      map(consolidated => this.chunkArray(consolidated, 3))
     );
 
 
