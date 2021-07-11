@@ -19,10 +19,13 @@
             <span aria-hidden="true"></span>
         </a>
     </div>
-    <div class="navbar-end">
-        <a class="navbar-item mr-2"
-            (click)="toggleDarkMode()">
-            {{ darkMode ? '☀️': ' 🌃' }}
-        </a>
+    <div id="navbarBasicExample"
+        class="navbar-menu">
+        <div class="navbar-end">
+            <a class="navbar-item mr-2 has-text-centered"
+                (click)="toggleDarkMode()">
+                {{ darkMode ? '☀️': ' 🌃' }}
+            </a>
+        </div>
     </div>
 </nav>

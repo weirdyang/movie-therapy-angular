@@ -1,7 +1,8 @@
-<app-header [darkMode]="( darkMode$ | async)"
-  (toggleDarkEvent)="toggleDarkMode($event)"></app-header>
 <main [ngClass]="{'dark-mode' : (darkMode$ | async)}">
-  <section class="section">
+  <app-header [darkMode]="( darkMode$ | async)"
+    (toggleDarkEvent)="toggleDarkMode($event)"></app-header>
+
+  <section class="section mt-0 pt-1">
     <router-outlet></router-outlet>
   </section>
 </main>
