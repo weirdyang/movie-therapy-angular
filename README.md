@@ -2,26 +2,27 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
-## Development server
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6baa71ea-e5fd-4c91-8010-8464e4995327/deploy-status)](https://app.netlify.com/sites/lucid-thompson-158d2d/deploys)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Site lives [here](https://lucid-thompson-158d2d.netlify.app/)
 
-## Code scaffolding
+## About
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project provides an interface to search and view movie and tv series recommended in the podcast [‎Movie Therapy with Rafer & Kristen](https://www.raferandkristen.com/).
 
-## Build
+Data source can be found [here](https://www.raferandkristen.com/prescription-pad).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Data processing can be found on [codepen](https://codepen.io/helloCaptMomo/pen/RwVaBPE).
 
-## Running unit tests
+Processed json resides [here](https://github.com/weirdyang/movie-therapy).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Move and tv show info and ratings are from [OMDBapi](https://www.omdbapi.com/).
 
-## Running end-to-end tests
+## Tools
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Material CDK virtual scroll viewport - [API link](https://material.angular.io/cdk/scrolling/overview)
 
-## Further help
+Bulma - [Documentation](https://bulma.io/documentation/)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Pluralsight: Styling Angular Apps course - [Repo](https://github.com/pluralsight-styling-angular-apps/demos-v2).
+
