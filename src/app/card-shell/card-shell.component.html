@@ -4,18 +4,21 @@
             <div class="field is-grouped">
                 <p class="control">
                     <button (click)="setFilter('movie')"
+                        aria-label="Click to only display movies"
                         [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
                         Movies
                     </button>
                 </p>
                 <p class="control">
                     <button (click)="setFilter('series')"
+                        aria-label="Click to only display tv-shows"
                         [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
                         TV Shows
                     </button>
                 </p>
                 <p class="control">
                     <button (click)="setFilter('all')"
+                        aria-label="Click to display all"
                         [ngClass]="{'button is-danger': true, 'is-outlined' : filter !== 'all' }">
                         All
                     </button>
@@ -31,7 +34,7 @@
                         (ngModelChange)="updateSearch($event)"
                         placeholder="Search for genre"
                         name="q"
-                        aria-label="Search through site content">
+                        aria-label="Search shows by gener">
 
                 </p>
             </div>

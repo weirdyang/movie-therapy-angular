@@ -19,5 +19,10 @@
             <span aria-hidden="true"></span>
         </a>
     </div>
-
+    <div class="navbar-end">
+        <a class="navbar-item m-2"
+            (click)="toggleDarkMode()">
+            {{ darkMode ? '☀️': ' 🌃' }}
+        </a>
+    </div>
 </nav>

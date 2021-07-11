@@ -11,7 +11,7 @@ import { listAnimation } from './list-animation';
   styleUrls: ['./card-shell.component.scss'],
   animations: [listAnimation]
 })
-export class CardShellComponent implements OnInit {
+export class CardShellComponent {
 
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
@@ -73,7 +73,6 @@ export class CardShellComponent implements OnInit {
         return consolidated;
       })
     );
-  ngOnInit(): void {
-  }
+
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ThemingService } from '../services/core/theming.service';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,14 @@ export class HeaderComponent implements OnInit {
 
   constructor() { }
 
+  @Input()
+  darkMode!: boolean | null;
+
+  @Output()
+  toggleDarkEvent = new EventEmitter<boolean>();
+  toggleDarkMode() {
+    this.toggleDarkEvent.emit(!this.darkMode);
+  }
   ngOnInit(): void {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemingService } from './services/core/theming.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bulma-angular';
+
+  darkMode$ = this.themeService.darkMode$;
+
+
+  constructor(private themeService: ThemingService) { }
+
+  toggleDarkMode(setting: boolean) {
+    this.themeService.setDarkPreference(setting);
+  }
 }

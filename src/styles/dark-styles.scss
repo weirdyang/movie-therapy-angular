@@ -28,10 +28,6 @@ $color-text-lighter: #fff;
 $body-background-color: $color-bg-darker;
 $body-color: $beige-lighter;
 
-html,
-body{
-    background: $color-bg-darker;
-}
 
 .button{
     &.is-link.is-outlined{
