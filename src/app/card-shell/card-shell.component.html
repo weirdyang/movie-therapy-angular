@@ -1,4 +1,4 @@
-<section class="section">
+<section class="section pt-0 mt-0">
     <div class="container">
         <ng-container *ngIf="(filter$ | async) as filter">
             <div class="field is-grouped">
@@ -43,15 +43,21 @@
 
     </div>
 </section>
+
 <div class="container is-dark">
-    <div id="main">
+    <section id="main">
         <ng-container *ngIf='allShows | async as movies'>
-            <div class="columns is-multiline"
-                [@listAnimation]=movies.length>
-                <app-show-card class="column is-4"
-                    *ngFor='let item of movies'
-                    [show]=item></app-show-card>
-            </div>
+            <cdk-virtual-scroll-viewport [itemSize]="200"
+                class="scroll-viewport">
+                <div class="columns is-multiline"
+                    [@listAnimation]=movies.length>
+                    <app-show-card class="column is-4"
+                        *cdkVirtualFor='let item of movies'
+                        [show]=item></app-show-card>
+                </div>
+            </cdk-virtual-scroll-viewport>
+
+
         </ng-container>
-    </div>
+    </section>
 </div>

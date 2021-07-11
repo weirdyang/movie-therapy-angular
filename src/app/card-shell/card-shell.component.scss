@@ -1,3 +1,15 @@
 :host{
     font-size: 1rem;
 }
+
+// https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll
+.scroll-viewport {
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+.scroll-viewport::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}

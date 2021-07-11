@@ -3,6 +3,9 @@
 
 @import "../node_modules/bulma/bulma.sass";
 
+html{
+    overflow-y: hidden;
+}
 .dark-mode{
     @import "./styles/dark-styles.scss";
     background: $color-bg-darker;

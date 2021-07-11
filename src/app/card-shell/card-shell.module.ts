@@ -4,7 +4,7 @@ import { CardShellRoutingModule } from './card-shell-routing.module';
 import { CardShellComponent } from './card-shell.component';
 import { ShowCardModule } from '../show-card/show-card.module';
 import { FormsModule } from '@angular/forms';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,11 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     CardShellRoutingModule,
     ShowCardModule,
-    FormsModule
+    FormsModule,
+    ScrollingModule
+  ],
+  exports: [
+    ScrollingModule
   ]
 })
 export class CardShellModule { }
