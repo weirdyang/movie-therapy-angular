@@ -5,11 +5,12 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  .card-footer {
+    margin-top: auto;
+    height: 8rem;
+  }
 }
-.bm--card-equal-height .card-footer {
-  margin-top: auto;
-  height: 10vh;
-}
+
 .card .card-image,
 .card .card-image .image img {
   width: 200px;
