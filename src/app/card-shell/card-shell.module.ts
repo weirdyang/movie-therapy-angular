@@ -5,7 +5,7 @@ import { CardShellComponent } from './card-shell.component';
 import { ShowCardModule } from '../show-card/show-card.module';
 import { FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-
+import { ScrollingModule as ExperimentalScrollingModule } from "@angular/cdk-experimental/scrolling";
 @NgModule({
   declarations: [
     CardShellComponent
@@ -15,10 +15,12 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CardShellRoutingModule,
     ShowCardModule,
     FormsModule,
-    ScrollingModule
+    ScrollingModule,
+    ExperimentalScrollingModule
   ],
   exports: [
-    ScrollingModule
+    ScrollingModule,
+    ExperimentalScrollingModule
   ]
 })
 export class CardShellModule { }

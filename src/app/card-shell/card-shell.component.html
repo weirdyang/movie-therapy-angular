@@ -47,7 +47,7 @@
 <div class="container is-dark">
     <section id="main">
         <ng-container *ngIf='allShows | async as movies'>
-            <cdk-virtual-scroll-viewport [itemSize]="400"
+            <cdk-virtual-scroll-viewport autosize
                 minBufferPx="400"
                 maxBufferPx="600"
                 class="scroll-viewport">
