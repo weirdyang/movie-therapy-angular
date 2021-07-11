@@ -1,17 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, forkJoin, interval, merge } from 'rxjs';
 import { debounce, map, share, shareReplay, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
 import { listAnimation } from './list-animation';
-
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-card-shell',
   templateUrl: './card-shell.component.html',
   styleUrls: ['./card-shell.component.scss'],
   animations: [listAnimation]
 })
+
 export class CardShellComponent {
+  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport | undefined;
 
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
@@ -83,8 +85,8 @@ export class CardShellComponent {
         }
         return consolidated;
       }),
-      map(consolidated => this.chunkArray(consolidated, 3))
+      map(consolidated => this.chunkArray(consolidated, 3)),
+      tap(_ => this.virtualScroll?.scrollToIndex(0)),
+      shareReplay(1)
     );
-
-
 }

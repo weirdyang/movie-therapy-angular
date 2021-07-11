@@ -47,9 +47,9 @@
 <div class="container is-dark">
     <section id="main">
         <ng-container *ngIf='allShows | async as movies'>
-            <cdk-virtual-scroll-viewport autosize
-                minBufferPx="400"
-                maxBufferPx="600"
+            <cdk-virtual-scroll-viewport [itemSize]="830"
+                minBufferPx="200"
+                maxBufferPx="200"
                 class="scroll-viewport">
                 <div *cdkVirtualFor='let row of movies'
                     class="columns is-multiline"

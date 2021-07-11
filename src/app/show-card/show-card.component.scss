@@ -1,7 +1,21 @@
 :host{
     font-size: 1rem;
 }
+.bm--card-equal-height {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.bm--card-equal-height .card-footer {
+  margin-top: auto;
+}
 .card .card-image,
 .card .card-image .image img {
-  height: 65vh;
+  height: 300px;
+  width: 200px;
+}
+
+.card-image{
+  padding-top: 1rem;
+  margin: auto;
 }
