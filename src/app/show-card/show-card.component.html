@@ -15,7 +15,9 @@
         </div>
 
         <div class="content">
-            {{ show.plot}}
+            <p>
+                {{ show.plot}}
+            </p>
             <ng-container *ngIf="hasImdbPage">
                 <br />
                 <a [href]="imdbUrl"
