@@ -46,7 +46,11 @@ $body-color: $beige-lighter;
     background-color: $color-bg-dark;
     color: $body-color;
 }
-.navbar-menu{
+.navbar-menu.is-active{
     background-color: $color-bg-med !important;
+    .navbar-item:hover{
+        background-color: $color-text-med-light;
+    }
 }
+
 
