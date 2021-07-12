@@ -49,12 +49,15 @@
     </div>
 </section>
 
-<div class="container is-dark">
-    <section id="main">
+
+<section id="main"
+    class="section p-0">
+    <div class="container">
         <ng-container *ngIf='allShows | async as data'>
-            <cdk-virtual-scroll-viewport [itemSize]="850"
+            <cdk-virtual-scroll-viewport autosize
+                [ngStyle]="{'height': 'calc(75vh)'}"
                 class="scroll-viewport pb-2">
-                <div *cdkVirtualFor='let row of data; let idx = index'
+                <div *cdkVirtualFor='let row of data; let idx = index;  templateCacheSize:0'
                     class="columns is-multiline px-1">
                     <app-show-card class="column is-4"
                         *ngFor='let item of row'
@@ -62,5 +65,5 @@
                 </div>
             </cdk-virtual-scroll-viewport>
         </ng-container>
-    </section>
-</div>
+    </div>
+</section>
