@@ -83,11 +83,13 @@ export class CardShellComponent {
         let consolidated: Show[] = [];
         if (filter === 'all') {
           consolidated = this.shuffleArray([...movies, ...shows]);
-        };
+        }
+        else {
+          consolidated = filter === 'series'
+            ? this.shuffleArray([...shows])
+            : this.shuffleArray([...movies]);
 
-        consolidated = filter === 'series'
-          ? this.shuffleArray([...shows])
-          : this.shuffleArray([...movies]);
+        }
 
         if (search.length !== 0) {
           return consolidated.filter(item =>
