@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, forkJoin, interval, merge } from 'rxjs'
 import { debounce, map, share, shareReplay, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
-import { listAnimation } from './list-animation';
+import { listStagger, listAnimation } from './list-animation';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-card-shell',
