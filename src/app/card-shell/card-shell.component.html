@@ -55,7 +55,9 @@
     <div class="container">
         <ng-container *ngIf='allShows | async as data'>
             <cdk-virtual-scroll-viewport autosize
-                [ngStyle]="{'height': 'calc(75vh)'}"
+                [maxBufferPx]="800"
+                [minBufferPx]="800"
+                [ngStyle]="{'height':'calc(85vh)'}"
                 class="scroll-viewport pb-2">
                 <div *cdkVirtualFor='let row of data; let idx = index;  templateCacheSize:0'
                     class="columns is-multiline px-1">

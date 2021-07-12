@@ -42,7 +42,7 @@ export class CardShellComponent {
   }
   updateSearch(input: string) {
     this.genre = input;
-    this.virtualScroll?.checkViewportSize();
+
     this.searchSubject.next(this.genre);
   }
   constructor(private showService: ShowService) { }
@@ -97,6 +97,7 @@ export class CardShellComponent {
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
       tap(_ => this.scrollToTop()),
+      tap(_ => this.virtualScroll?.checkViewportSize()),
       shareReplay(1)
     );
 }
