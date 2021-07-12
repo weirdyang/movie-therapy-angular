@@ -78,7 +78,9 @@ export class CardShellComponent {
   }
 
 
-
+  trackByFn(index: number, items: Show[]) {
+    return index;
+  }
   checkViewportSize() {
     window.dispatchEvent(new Event('resize'));
     setTimeout(() => {

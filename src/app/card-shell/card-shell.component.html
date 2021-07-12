@@ -58,7 +58,7 @@
                 [maxBufferPx]="800"
                 [minBufferPx]="800"
                 class="scroll-viewport pb-2">
-                <div *cdkVirtualFor='let row of data; let idx = index;  templateCacheSize:0'
+                <div *cdkVirtualFor='let row of data;trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
                     class="columns is-multiline px-1">
                     <app-show-card class="column is-4"
                         *ngFor='let item of row'
