@@ -74,6 +74,10 @@ export class CardShellComponent {
     this.virtualScroll?.scrollToOffset(top);
   }
 
+  checkViewPortSize() {
+    window.dispatchEvent(new Event('resize'));
+  }
+
   allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
       map(([movies, shows, filter, search]) => {
@@ -93,7 +97,9 @@ export class CardShellComponent {
         return consolidated;
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
+      tap(console.log),
       tap(_ => this.scrollToTop()),
+      tap(_ => this.checkViewPortSize()),
       shareReplay(1)
     );
 }

@@ -5,6 +5,7 @@
                 <div class="field is-grouped mb-2 column is-4">
                     <p class="control">
                         <button (click)="setFilter('movie')"
+                            [disabled]="filter === 'movie'"
                             aria-label="Click to only display movies"
                             [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
                             Movies
@@ -12,6 +13,7 @@
                     </p>
                     <p class="control">
                         <button (click)="setFilter('series')"
+                            [disabled]="filter === 'series'"
                             aria-label="Click to only display tv-shows"
                             [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
                             TV Shows
@@ -20,6 +22,7 @@
                     <p class="control">
                         <button (click)="setFilter('all')"
                             aria-label="Click to display all"
+                            [disabled]="filter === 'all'"
                             [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
                             All
                         </button>
@@ -50,12 +53,10 @@
     <section id="main">
         <ng-container *ngIf='allShows | async as movies'>
             <cdk-virtual-scroll-viewport autosize
-                minBufferPx="200"
-                maxBufferPx="200"
                 class="scroll-viewport">
                 <div *cdkVirtualFor='let row of movies'
                     class="columns is-multiline px-1"
-                    [@listAnimation]=movies.length>
+                    [@listAnimation]="">
                     <app-show-card class="column is-4"
                         *ngFor='let item of row'
                         [show]=item></app-show-card>
