@@ -47,6 +47,7 @@ export class CardShellComponent {
   }
   constructor(private showService: ShowService) { }
 
+
   movies$ = this.showService.getMovies().pipe(shareReplay(1));
 
   shows$ = this.showService.getTvShows().pipe(shareReplay(1));
@@ -77,6 +78,13 @@ export class CardShellComponent {
   }
 
 
+
+  checkViewportSize() {
+    window.dispatchEvent(new Event('resize'));
+    setTimeout(() => {
+      this.virtualScroll.checkViewportSize();
+    }, 500);
+  }
   allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
       map(([movies, shows, filter, search]) => {
@@ -99,7 +107,7 @@ export class CardShellComponent {
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
       tap(_ => this.scrollToTop()),
-      tap(_ => this.virtualScroll?.checkViewportSize()),
+      tap(_ => this.checkViewportSize()),
       shareReplay(1)
     );
 }
