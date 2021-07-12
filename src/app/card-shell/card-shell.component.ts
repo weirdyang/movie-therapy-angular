@@ -13,7 +13,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 })
 
 export class CardShellComponent {
-  @ViewChild(CdkVirtualScrollViewport) virtualScroll: CdkVirtualScrollViewport | undefined;
+  @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
 
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
@@ -67,6 +67,13 @@ export class CardShellComponent {
     }
     return array;
   }
+
+  scrollToTop() {
+    let top = this.virtualScroll?.measureScrollOffset("start");
+    console.log(top, 'top');
+    this.virtualScroll?.scrollToOffset(top);
+  }
+
   allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
       map(([movies, shows, filter, search]) => {
@@ -86,7 +93,7 @@ export class CardShellComponent {
         return consolidated;
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
-      tap(_ => this.virtualScroll?.scrollToIndex(0)),
+      tap(_ => this.scrollToTop()),
       shareReplay(1)
     );
 }

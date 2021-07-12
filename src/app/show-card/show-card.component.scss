@@ -1,16 +1,15 @@
 :host{
     font-size: 1rem;
 }
-.bm--card-equal-height {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  .button {
-    margin-top: auto;
-  }
-  .card-footer {
-    margin-top: auto;
-    height: 5rem;
+.bm{
+  &--card-equal-height {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .card-footer {
+      margin-top: auto;
+      max-height: 6rem;
+    }
   }
 }
 

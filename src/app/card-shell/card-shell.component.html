@@ -1,7 +1,7 @@
 <section class="section pt-2 mt-0 mb-0 pb-2">
     <div class="container">
         <ng-container *ngIf="(filter$ | async) as filter">
-            <div class="columns is-centered is-gapless">
+            <div class="columns is-centered is-gapless px-1">
                 <div class="field is-grouped mb-2 column is-4">
                     <p class="control">
                         <button (click)="setFilter('movie')"
@@ -49,12 +49,12 @@
 <div class="container is-dark">
     <section id="main">
         <ng-container *ngIf='allShows | async as movies'>
-            <cdk-virtual-scroll-viewport [itemSize]="830"
+            <cdk-virtual-scroll-viewport autosize
                 minBufferPx="200"
                 maxBufferPx="200"
                 class="scroll-viewport">
                 <div *cdkVirtualFor='let row of movies'
-                    class="columns is-multiline"
+                    class="columns is-multiline px-1"
                     [@listAnimation]=movies.length>
                     <app-show-card class="column is-4"
                         *ngFor='let item of row'
