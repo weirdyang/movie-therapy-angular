@@ -1,15 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, combineLatest, forkJoin, interval, merge } from 'rxjs';
+import { BehaviorSubject, combineLatest, forkJoin, interval, merge, Observable } from 'rxjs';
 import { debounce, map, share, shareReplay, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
-import { listStagger, listAnimation } from './list-animation';
+import { listStagger, listAnimation, showCard } from './list-animation';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-card-shell',
   templateUrl: './card-shell.component.html',
   styleUrls: ['./card-shell.component.scss'],
-  animations: [listAnimation]
+  animations: [listAnimation, showCard, listStagger]
 })
 
 export class CardShellComponent {
@@ -60,6 +60,7 @@ export class CardShellComponent {
 
     return tempArray
   }
+
   shuffleArray(array: Show[]) {
     for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));

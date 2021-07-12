@@ -51,12 +51,12 @@
 
 <div class="container is-dark">
     <section id="main">
-        <ng-container *ngIf='allShows | async as movies'>
+        <ng-container *ngIf='allShows | async as data'>
             <cdk-virtual-scroll-viewport autosize
-                class="scroll-viewport">
-                <div *cdkVirtualFor='let row of movies'
-                    class="columns is-multiline px-1"
-                    [@listAnimation]="">
+                class="scroll-viewport"
+                [@listAnimation]="true">
+                <div *cdkVirtualFor='let row of data; let idx = index'
+                    class="columns is-multiline px-1">
                     <app-show-card class="column is-4"
                         *ngFor='let item of row'
                         [show]=item></app-show-card>
