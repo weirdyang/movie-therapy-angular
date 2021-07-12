@@ -23,6 +23,9 @@ export class CardShellComponent {
     );
 
   setFilter(filterString: string) {
+    this.virtualScroll?.checkViewportSize();
+    let height = this.virtualScroll?.getDataLength();
+    this.virtualScroll.setRenderedContentOffset(height * 800, 'to-start')
     this.filterSubject.next(filterString);
   }
 
@@ -42,6 +45,7 @@ export class CardShellComponent {
   }
   updateSearch(input: string) {
     this.genre = input;
+    this.virtualScroll?.checkViewportSize();
     this.searchSubject.next(this.genre);
   }
   constructor(private showService: ShowService) { }
@@ -75,9 +79,6 @@ export class CardShellComponent {
     this.virtualScroll?.scrollToOffset(top);
   }
 
-  checkViewPortSize() {
-    window.dispatchEvent(new Event('resize'));
-  }
 
   allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
@@ -100,7 +101,6 @@ export class CardShellComponent {
       map(consolidated => this.chunkArray(consolidated, 3)),
       tap(console.log),
       tap(_ => this.scrollToTop()),
-      tap(_ => this.checkViewPortSize()),
       shareReplay(1)
     );
 }

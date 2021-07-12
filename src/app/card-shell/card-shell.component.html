@@ -52,9 +52,8 @@
 <div class="container is-dark">
     <section id="main">
         <ng-container *ngIf='allShows | async as data'>
-            <cdk-virtual-scroll-viewport autosize
-                class="scroll-viewport"
-                [@listAnimation]="true">
+            <cdk-virtual-scroll-viewport [itemSize]="850"
+                class="scroll-viewport pb-2">
                 <div *cdkVirtualFor='let row of data; let idx = index'
                     class="columns is-multiline px-1">
                     <app-show-card class="column is-4"
