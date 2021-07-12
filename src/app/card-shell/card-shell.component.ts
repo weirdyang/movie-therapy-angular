@@ -23,9 +23,6 @@ export class CardShellComponent {
     );
 
   setFilter(filterString: string) {
-    this.virtualScroll?.checkViewportSize();
-    let height = this.virtualScroll?.getDataLength();
-    this.virtualScroll.setRenderedContentOffset(height * 800, 'to-start')
     this.filterSubject.next(filterString);
   }
 
@@ -99,7 +96,6 @@ export class CardShellComponent {
         return consolidated;
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
-      tap(console.log),
       tap(_ => this.scrollToTop()),
       shareReplay(1)
     );
