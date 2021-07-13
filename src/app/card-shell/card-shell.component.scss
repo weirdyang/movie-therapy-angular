@@ -1,3 +1,5 @@
+@use "~bulma/sass/utilities/mixins.sass" as mixins;
+
 :host{
     font-size: 1rem;
 }
@@ -10,6 +12,9 @@
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    @include mixins.mobile{
+        height: calc(70vh);
+    }
 }
 .scroll-viewport::-webkit-scrollbar { /* WebKit */
     width: 0;
