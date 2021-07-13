@@ -4,7 +4,8 @@
 
 // https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll
 .scroll-viewport {
-    height: calc(75vh);
+    border-radius: 0.25em;
+    height: calc(85vh);
     overflow-x: hidden;
     overflow-y: scroll;
     scrollbar-width: none; /* Firefox */
