@@ -115,7 +115,7 @@ export class CardShellComponent implements OnDestroy {
     );
   protected readonly destroy$ = new Subject();
 
-  reSize$ = merge(this.allShows$)
+  reSize$ = this.allShows$
     .pipe(
       debounceTime(10),
       takeUntil(this.destroy$)
@@ -123,6 +123,7 @@ export class CardShellComponent implements OnDestroy {
       this.scrollToTop();
       this.checkViewportSize();
     })
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
