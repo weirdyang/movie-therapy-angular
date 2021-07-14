@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, combineLatest, forkJoin, interval, merge, Observable } from 'rxjs';
-import { debounce, map, share, shareReplay, tap } from 'rxjs/operators';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, combineLatest, forkJoin, fromEvent, interval, merge, Observable, Subject } from 'rxjs';
+import { debounce, debounceTime, map, share, shareReplay, takeUntil, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
 import { listStagger, listAnimation, showCard } from './list-animation';
@@ -12,7 +12,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
   animations: [listAnimation, showCard, listStagger]
 })
 
-export class CardShellComponent {
+export class CardShellComponent implements OnDestroy {
   @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
 
   private filterSubject = new BehaviorSubject<string>("all");
@@ -84,13 +84,13 @@ export class CardShellComponent {
   }
 
   checkViewportSize() {
-    window.dispatchEvent(new Event('resize'));
+    // window.dispatchEvent(new Event('resize'));
     setTimeout(() => {
       this.virtualScroll.checkViewportSize();
     }, 500);
   }
 
-  allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
+  allShows$ = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
       map(([movies, shows, filter, search]) => {
         let consolidated: Show[] = [];
@@ -110,8 +110,21 @@ export class CardShellComponent {
         return consolidated.sort();
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
-      tap(_ => this.scrollToTop()),
-      tap(_ => this.checkViewportSize()),
-      shareReplay(1)
+      shareReplay(1),
+      share()
     );
+  protected readonly destroy$ = new Subject();
+
+  reSize$ = merge(this.allShows$)
+    .pipe(
+      debounceTime(10),
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.scrollToTop();
+      this.checkViewportSize();
+    })
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }
