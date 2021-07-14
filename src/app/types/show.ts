@@ -5,7 +5,7 @@ export interface Show {
     poster: string;
     imdbId: string;
     data: OMDBResult;
-    ratings: Rating[]
+    ratings: Rating[];
 }
 
 export interface Rating {

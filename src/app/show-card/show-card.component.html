@@ -1,4 +1,4 @@
-<div class="card bm--card-equal-height">
+<article class="card bm--card-equal-height">
     <div class="card-image">
         <figure class="image is-2by3">
             <img loading="lazy"
@@ -6,7 +6,7 @@
                 alt="Movie poster">
         </figure>
     </div>
-    <div class="card-content">
+    <article class="card-content">
         <div class="media">
             <div class="media-content">
                 <p class="title is-4">{{ show.movieTitle }}</p>
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div class="content">
+        <article class="content">
 
             {{ show.plot}}
             <ng-container *ngIf="hasImdbPage">
@@ -27,8 +27,8 @@
                     mt-2
                     is-outlined">View IMDB</a>
             </ng-container>
-        </div>
-    </div>
+        </article>
+    </article>
     <ng-container *ngIf="hasRatings">
         <footer class="card-footer">
             <div *ngFor='let rating of show.ratings'
@@ -38,4 +38,4 @@
             </div>
         </footer>
     </ng-container>
-</div>
+</article>

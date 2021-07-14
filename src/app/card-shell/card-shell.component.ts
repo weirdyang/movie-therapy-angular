@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, forkJoin, interval, merge, Observable } from 'rxjs';
 import { debounce, map, share, shareReplay, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
@@ -13,7 +13,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 })
 
 export class CardShellComponent {
-  @ViewChild(CdkVirtualScrollViewport) virtualScroll!: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
 
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
@@ -41,7 +41,7 @@ export class CardShellComponent {
     this._genre = value;
   }
   updateSearch(input: string) {
-    this.genre = input;
+    this.genre = input.trim();
 
     this.searchSubject.next(this.genre);
   }
@@ -55,11 +55,9 @@ export class CardShellComponent {
   // https://github.com/angular/components/issues/10114
   chunkArray(array: Show[], chunk: number): Show[][] {
     const tempArray: Show[][] = [];
-
     for (let i = 0, j = array.length; i < j; i += chunk) {
       tempArray.push(array.slice(i, i + chunk));
     }
-
     return tempArray
   }
 
@@ -77,35 +75,39 @@ export class CardShellComponent {
     this.virtualScroll?.scrollToOffset(top);
   }
 
-
   trackByFn(index: number, items: Show[]) {
-    return index;
+    let titles = "";
+    items.forEach(item => {
+      titles += item.movieTitle.replace(/\s/g, "");
+    });
+    return `${titles}`;
   }
+
   checkViewportSize() {
     window.dispatchEvent(new Event('resize'));
     setTimeout(() => {
       this.virtualScroll.checkViewportSize();
     }, 500);
   }
+
   allShows = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
     .pipe(
       map(([movies, shows, filter, search]) => {
         let consolidated: Show[] = [];
         if (filter === 'all') {
-          consolidated = this.shuffleArray([...movies, ...shows]);
+          consolidated = [...movies, ...shows]
         }
         else {
           consolidated = filter === 'series'
-            ? this.shuffleArray([...shows])
-            : this.shuffleArray([...movies]);
-
+            ? [...shows]
+            : [...movies]
         }
 
         if (search.length !== 0) {
           return consolidated.filter(item =>
             item.data.Genre?.toLowerCase().includes(search.toLowerCase()));
         }
-        return consolidated;
+        return consolidated.sort();
       }),
       map(consolidated => this.chunkArray(consolidated, 3)),
       tap(_ => this.scrollToTop()),
