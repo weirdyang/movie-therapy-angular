@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SideMenuComponent } from './side-menu.component';
+import { SideNavComponent } from './side-nav.component';
 
 
 
 @NgModule({
   declarations: [
-    SideMenuComponent
+    SideNavComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    SideMenuComponent
+    SideNavComponent
   ]
 })
-export class SideMenuModule { }
+export class SideNavModule { }

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScrollingModule as ExperimentalScrollingModule } from "@angular/cdk-experimental/scrolling";
 import { SideMenuModule } from '../side-menu/side-menu.module';
+import { SideNavModule } from '../side-nav/side-nav.module';
 @NgModule({
   declarations: [
     CardShellComponent
@@ -18,7 +19,8 @@ import { SideMenuModule } from '../side-menu/side-menu.module';
     FormsModule,
     ScrollingModule,
     ExperimentalScrollingModule,
-    SideMenuModule
+    SideMenuModule,
+    SideNavModule
   ],
   exports: [
     ScrollingModule,

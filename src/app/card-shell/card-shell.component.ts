@@ -5,6 +5,7 @@ import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
 import { listStagger, listAnimation, showCard } from './list-animation';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { NavigationService } from '../services/navigation.service';
 @Component({
   selector: 'app-card-shell',
   templateUrl: './card-shell.component.html',
@@ -14,7 +15,19 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 export class CardShellComponent implements OnDestroy {
   @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
+  private _showMenu = false;
 
+  get showMenu() {
+    return this.navigationService.isShown;
+  }
+
+  set showMenu(value) {
+    this.navigationService.setShowNav(value);
+  }
+
+  displayFilters() {
+    this.showMenu = !this.showMenu;
+  }
   private filterSubject = new BehaviorSubject<string>("all");
   filter$ = this.filterSubject.asObservable()
     .pipe(
@@ -45,7 +58,8 @@ export class CardShellComponent implements OnDestroy {
 
     this.searchSubject.next(this.genre);
   }
-  constructor(private showService: ShowService) { }
+  constructor(private showService: ShowService,
+    private navigationService: NavigationService) { }
 
 
   movies$ = this.showService.getMovies().pipe(shareReplay(1));
