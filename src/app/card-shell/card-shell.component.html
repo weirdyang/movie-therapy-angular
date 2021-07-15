@@ -1,69 +1,115 @@
-<section class="section pt-2 mt-0 mb-0 pb-2">
+<section class="section">
     <div class="container">
-        <ng-container *ngIf="(filter$ | async) as filter">
-            <div class="columns is-centered is-gapless px-1">
-                <div class="field is-grouped mb-2 column is-4">
-                    <p class="control">
-                        <button (click)="setFilter('movie')"
-                            [disabled]="filter === 'movie'"
-                            aria-label="Click to only display movies"
-                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
-                            Movies
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button (click)="setFilter('series')"
-                            [disabled]="filter === 'series'"
-                            aria-label="Click to only display tv-shows"
-                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
-                            TV Shows
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button (click)="setFilter('all')"
-                            aria-label="Click to display all"
-                            [disabled]="filter === 'all'"
-                            [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
-                            All
-                        </button>
-                    </p>
+        <div class="columns">
+            <div class="column is-3">
 
-                </div>
-                <div class="field column">
-                    <p class="control">
-                        <input type="search"
-                            id="site-search"
-                            class="input"
-                            [ngModel]="genre"
-                            (ngModelChange)="updateSearch($event)"
-                            placeholder="Filter by genre"
-                            name="q"
-                            aria-label="Search shows by gener">
-
+                <aside class="menu">
+                    <p class="menu-label">
+                        General
                     </p>
-                </div>
+                    <ul class="menu-list">
+                        <li><a>Dashboard</a></li>
+                        <li><a>Customers</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Administration
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Team Settings</a></li>
+                        <li>
+                            <a class="is-active">Manage Your Team</a>
+                            <ul>
+                                <li><a>Members</a></li>
+                                <li><a>Plugins</a></li>
+                                <li><a>Add a member</a></li>
+                            </ul>
+                        </li>
+                        <li><a>Invitations</a></li>
+                        <li><a>Cloud Storage Environment Settings</a></li>
+                        <li><a>Authentication</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        Transactions
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Payments</a></li>
+                        <li><a>Transfers</a></li>
+                        <li><a>Balance</a></li>
+                    </ul>
+                </aside>
             </div>
-        </ng-container>
+            <div class="column">
+
+                <section class="section pt-2 mt-0 mb-0 pb-2">
+                    <div class="container">
+                        <ng-container *ngIf="(filter$ | async) as filter">
+                            <div class="columns is-centered is-gapless px-1">
+                                <div class="field is-grouped mb-2 column is-4">
+                                    <p class="control">
+                                        <button (click)="setFilter('movie')"
+                                            [disabled]="filter === 'movie'"
+                                            aria-label="Click to only display movies"
+                                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
+                                            Movies
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <button (click)="setFilter('series')"
+                                            [disabled]="filter === 'series'"
+                                            aria-label="Click to only display tv-shows"
+                                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
+                                            TV Shows
+                                        </button>
+                                    </p>
+                                    <p class="control">
+                                        <button (click)="setFilter('all')"
+                                            aria-label="Click to display all"
+                                            [disabled]="filter === 'all'"
+                                            [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
+                                            All
+                                        </button>
+                                    </p>
+
+                                </div>
+                                <div class="field column">
+                                    <p class="control">
+                                        <input type="search"
+                                            id="site-search"
+                                            class="input"
+                                            [ngModel]="genre"
+                                            (ngModelChange)="updateSearch($event)"
+                                            placeholder="Filter by genre"
+                                            name="q"
+                                            aria-label="Search shows by gener">
+
+                                    </p>
+                                </div>
+                            </div>
+                        </ng-container>
 
 
-    </div>
-</section>
+                    </div>
+                </section>
 
 
-<section id="main">
-    <div class="container">
-        <ng-container *ngIf='allShows$ | async as data'>
-            <cdk-virtual-scroll-viewport autosize
-                [maxBufferPx]="800"
-                [minBufferPx]="800"
-                class="scroll-viewport pb-2">
-                <div *cdkVirtualFor='let row of data;trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
-                    class="columns is-multiline px-1">
-                    <app-show-card class="column is-4"
-                        *ngFor='let item of row'
-                        [show]=item></app-show-card>
-                </div>
-            </cdk-virtual-scroll-viewport>
-        </ng-container>
+                <section id="main">
+                    <div class="container">
+                        <ng-container *ngIf='allShows$ | async as data'>
+                            <cdk-virtual-scroll-viewport autosize
+                                [maxBufferPx]="800"
+                                [minBufferPx]="800"
+                                class="scroll-viewport pb-2">
+                                <div *cdkVirtualFor='let row of data;trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
+                                    class="columns is-multiline px-1">
+                                    <app-show-card class="column is-4"
+                                        *ngFor='let item of row'
+                                        [show]=item></app-show-card>
+                                </div>
+                            </cdk-virtual-scroll-viewport>
+                        </ng-container>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
 </section>
