@@ -52,5 +52,43 @@ $body-color: $beige-lighter;
         background-color: $color-text-med-light;
     }
 }
+.menu-list a {
+    border-radius: 2px;
+    color: $color-text-light;
+    display: block;
+    padding: 0.5em 0.75em;
+}
+.menu-label {
+    color: $color-text-med;
+    font-size: 0.75em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.dropdown  * {
+    background-color: $color-bg-med;
+    color: $color-text-light;
 
+}
+$dropdown-background: rgba(247, 247, 247, 0.3);
+.dropdown{
+    .dropdown-item:hover{
+        color: $color-text-light;
+        background-color:$dropdown-background;
+    }
 
+    .is-selected {
+        background-color: $dropdown-background;
+        a {
+
+            color: $color-text-light;
+        }
+
+    }
+    .dropdown-item {
+        a {
+
+            background-color: transparent;
+        }
+
+    }
+}

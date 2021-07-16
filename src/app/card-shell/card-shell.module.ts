@@ -8,6 +8,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScrollingModule as ExperimentalScrollingModule } from "@angular/cdk-experimental/scrolling";
 import { SideMenuModule } from '../side-menu/side-menu.module';
 import { SideNavModule } from '../side-nav/side-nav.module';
+import { GenreFilterModule } from '../genre-filter/genre-filter.module';
+
 @NgModule({
   declarations: [
     CardShellComponent
@@ -20,7 +22,8 @@ import { SideNavModule } from '../side-nav/side-nav.module';
     ScrollingModule,
     ExperimentalScrollingModule,
     SideMenuModule,
-    SideNavModule
+    SideNavModule,
+    GenreFilterModule
   ],
   exports: [
     ScrollingModule,

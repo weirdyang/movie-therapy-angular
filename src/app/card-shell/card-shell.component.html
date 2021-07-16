@@ -2,7 +2,7 @@
 
 
     <div class="columns">
-        <div>
+        <div class="column is-2">
             <!-- <app-side-nav [sidenavTemplateRef]="navContent"
                 [direction]="1"
                 [navWidth]="280"
@@ -13,7 +13,10 @@
             <div class="bd-overlay"
                 [ngClass]="{ 'bd-overlay--active': showMenu }"
                 (click)="displayFilters()"></div>
-            <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'"></app-side-menu>
+            <div class="bd-container">
+                <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'"></app-side-menu>
+
+            </div>
 
         </div>
         <div class="column">
@@ -74,7 +77,9 @@
 
                 </div>
             </section>
-
+            <section>
+                <app-genre-filter></app-genre-filter>
+            </section>
 
             <section id="main">
                 <div class="container">
@@ -83,7 +88,7 @@
                             [maxBufferPx]="800"
                             [minBufferPx]="800"
                             class="scroll-viewport pb-2">
-                            <div *cdkVirtualFor='let row of data;trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
+                            <div *cdkVirtualFor='let row of data; trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
                                 class="columns is-multiline px-1">
                                 <app-show-card class="column is-4"
                                     *ngFor='let item of row'

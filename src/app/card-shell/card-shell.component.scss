@@ -13,16 +13,6 @@
     }
 }
 
-.bd-docs-overlay {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-}
-.bd-docs-overlay {
-  display: block;
-}
 .bd-docs {
   border-top: none;
   overflow: hidden;
@@ -31,10 +21,24 @@
   opacity: 0.8;
   pointer-events: auto;
 }
+
 .bd{
+    &-container {
+        border-radius: 0.25em;
+        height: calc(85vh);
+        overflow-x: hidden;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        &::-webkit-scrollbar{
+            width: 0;
+            height: 0;
+        }
+
+    }
     &-overlay{
         z-index: 1000;
-    width: 0px;
+        width: 0px;
         bottom: 0;
         left: 0;
         position: absolute;
@@ -48,6 +52,7 @@
         }
     }
     &-aside{
+        height: 85vh;
         @media screen and (max-width: 768px) {
             padding-left: 1rem;
             padding-right: 1rem;

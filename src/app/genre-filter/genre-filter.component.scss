@@ -1,0 +1,18 @@
+$dropdown-background: rgba(247, 247, 247,0.8);
+.dropdown-content {
+    overflow-y: scroll;
+    height: 25vh;
+}
+.dropdown-item:hover {
+    opacity: 0.8;
+    background-color:$dropdown-background
+}
+.is-selected {
+    opacity: 0.8;
+    color: black;
+    background-color: $dropdown-background
+}
+
+.bd-tags {
+    height: 3rem;
+}
