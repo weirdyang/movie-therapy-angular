@@ -10,17 +10,13 @@
                 aria-label="Click to go to podcast page"
                 height="52px">
         </a>
-
         <a role="button"
             class="navbar-burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+            (click)="toggleDarkMode()">
+            {{ darkMode ? '☀️': ' 🌃' }}
         </a>
     </div>
+
     <div id="navbarBasicExample"
         class="navbar-menu">
         <div class="navbar-end">

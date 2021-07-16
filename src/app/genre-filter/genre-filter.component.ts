@@ -35,6 +35,12 @@ export class GenreFilterComponent {
   @Input()
   options: Option[] = genres.map(item => new Option(item, false));
 
+  @Input()
+  placeholder: string = "Filter by genre";
+
+  @Input()
+  height: string = "25vh";
+
   get selectedOptions() {
     return this.options.filter(item => item.selected);
   }
@@ -42,7 +48,7 @@ export class GenreFilterComponent {
   toggleOpen() {
     this._isOpenSubject.next(!this._isOpenSubject.value);
   }
-  selectOption(option: Option) {
+  toggleSelect(option: Option) {
     option.selected = !option.selected;
   }
 }

@@ -1,11 +1,14 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BehaviorSubject, combineLatest, forkJoin, fromEvent, interval, merge, Observable, Subject } from 'rxjs';
-import { debounce, debounceTime, map, share, shareReplay, takeUntil, tap } from 'rxjs/operators';
+import { debounce, debounceTime, map, share, shareReplay, take, takeUntil, tap } from 'rxjs/operators';
 import { ShowService } from '../services/show.service';
 import { Show } from '../types/show';
 import { listStagger, listAnimation, showCard } from './list-animation';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NavigationService } from '../services/navigation.service';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+
+
 @Component({
   selector: 'app-card-shell',
   templateUrl: './card-shell.component.html',
@@ -15,6 +18,8 @@ import { NavigationService } from '../services/navigation.service';
 
 export class CardShellComponent implements OnDestroy {
   @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
+  protected readonly destroy$ = new Subject();
+
   private _showMenu = false;
 
   get showMenu() {
@@ -59,9 +64,24 @@ export class CardShellComponent implements OnDestroy {
     this.searchSubject.next(this.genre);
   }
   constructor(private showService: ShowService,
-    private navigationService: NavigationService) { }
+    private navigationService: NavigationService,
+    public breakpointObserver: BreakpointObserver) { }
 
+  breakPoint$ = this.breakpointObserver.observe([
+    Breakpoints.Handset,
+    Breakpoints.TabletPortrait,
+    "(max-width: 768px)",
+  ]).pipe(
+    map(result => result.matches),
+    takeUntil(this.destroy$),
+    shareReplay(1),
+  )
 
+  hideMenu$ = this.breakPoint$.subscribe(result => {
+    if (!result) {
+      this.showMenu = false;
+    }
+  })
   movies$ = this.showService.getMovies().pipe(shareReplay(1));
 
   shows$ = this.showService.getTvShows().pipe(shareReplay(1));
@@ -127,7 +147,7 @@ export class CardShellComponent implements OnDestroy {
       shareReplay(1),
       share()
     );
-  protected readonly destroy$ = new Subject();
+
 
   reSize$ = this.allShows$
     .pipe(
@@ -137,6 +157,7 @@ export class CardShellComponent implements OnDestroy {
       this.scrollToTop();
       this.checkViewportSize();
     })
+
 
   ngOnDestroy() {
     this.destroy$.next();

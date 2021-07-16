@@ -2,11 +2,12 @@
     <div class="dropdown"
         [ngClass]="(isOpen$ | async) ? 'is-active': ''">
         <div class="dropdown-trigger">
-            <button class="button"
+            <button class="button is-outlined"
+                type="button"
                 aria-haspopup="true"
                 aria-controls="dropdown-menu"
                 (click)="toggleOpen()">
-                <span>Dropdown button</span>
+                <span>{{ placeholder }}</span>
                 <span class="icon is-small">
                     <fa-icon [icon]="downIcon"></fa-icon>
                 </span>
@@ -15,25 +16,27 @@
         <div class="dropdown-menu"
             id="dropdown-menu"
             role="menu">
-            <div class="dropdown-content">
+            <div class="dropdown-content"
+                [style.height]="height">
                 <span *ngFor="let option of options"
                     [ngClass]="option.selected ? 'is-selected' : ''"
                     class="dropdown-item"
-                    (click)="selectOption(option)">
+                    (click)="toggleSelect(option)">
                     <a>{{ option.value }}</a>
                 </span>
             </div>
         </div>
     </div>
 
-    <div class="tags bd-tags has-addons py-1">
+    <div class="tags bd-tags py-1">
         <div class="control"
             *ngFor="let selected of selectedOptions">
-            <div class="tags has-addons px-1">
-                <a class="tag is-link">{{ selected.value }} </a>
-                <a class="tag is-delete"
-                    (click)="selectOption(selected)"></a>
+            <div class="control p-1">
+                <div class="tags has-addons">
+                    <a class="tag is-info">{{selected.value}}</a>
+                    <a class="tag is-delete is-info"
+                        (click)="toggleSelect(selected)"></a>
+                </div>
             </div>
         </div>
     </div>
-</div>

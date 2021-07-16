@@ -1,7 +1,10 @@
 $dropdown-background: rgba(247, 247, 247,0.8);
 .dropdown-content {
     overflow-y: scroll;
-    height: 25vh;
+
+}
+.button {
+    border-color: inherit;
 }
 .dropdown-item:hover {
     opacity: 0.8;

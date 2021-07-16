@@ -2,7 +2,7 @@
 
 
     <div class="columns">
-        <div class="column is-2">
+        <div>
             <!-- <app-side-nav [sidenavTemplateRef]="navContent"
                 [direction]="1"
                 [navWidth]="280"
@@ -11,10 +11,12 @@
                 <app-side-menu></app-side-menu>
             </ng-template> -->
             <div class="bd-overlay"
-                [ngClass]="{ 'bd-overlay--active': showMenu }"
+                [ngClass]="{ 'bd-overlay--active': showMenu}"
                 (click)="displayFilters()"></div>
-            <div class="bd-container">
-                <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'"></app-side-menu>
+            <div [ngClass]="(breakPoint$ |async) ? '' :  'bd-container'">
+                <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'">
+
+                </app-side-menu>
 
             </div>
 

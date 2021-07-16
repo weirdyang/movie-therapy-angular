@@ -8,7 +8,7 @@ import { SideNavDirection } from './side-nav-direction.enum';
   templateUrl: './side-nav.component.html',
   styleUrls: ['./side-nav.component.scss'],
 })
-export class SideNavComponent implements OnInit {
+export class SideNavComponent {
 
   showSideNav$ = this.navService.showNav$
   @Input() sidenavTemplateRef: any;
@@ -21,9 +21,7 @@ export class SideNavComponent implements OnInit {
   get stringDirection() {
     return this.direction === SideNavDirection.Left ? 'left' : 'right';
   }
-  ngOnInit(): void {
 
-  }
 
   onSidebarClose() {
     this.navService.setShowNav(false);
