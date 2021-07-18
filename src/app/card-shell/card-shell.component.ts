@@ -7,6 +7,7 @@ import { listStagger, listAnimation, showCard } from './list-animation';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { NavigationService } from '../services/navigation.service';
 import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { HandsetService } from '../services/handset.service';
 
 
 @Component({
@@ -65,17 +66,10 @@ export class CardShellComponent implements OnDestroy {
   }
   constructor(private showService: ShowService,
     private navigationService: NavigationService,
-    public breakpointObserver: BreakpointObserver) { }
+    public breakpointObserver: BreakpointObserver,
+    private handsetService: HandsetService) { }
 
-  breakPoint$ = this.breakpointObserver.observe([
-    Breakpoints.Handset,
-    Breakpoints.TabletPortrait,
-    "(max-width: 768px)",
-  ]).pipe(
-    map(result => result.matches),
-    takeUntil(this.destroy$),
-    shareReplay(1),
-  )
+  breakPoint$ = this.handsetService.isScreenSmall$;
 
   hideMenu$ = this.breakPoint$.subscribe(result => {
     if (!result) {

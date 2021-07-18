@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class NavigationService implements OnInit {
+export class NavigationService {
 
   private _showNavSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -19,9 +19,6 @@ export class NavigationService implements OnInit {
     });
   }
 
-  ngOnInit() {
-  }
-
   get isShown() {
     return this._showNavSubject.value;
   }
@@ -30,6 +27,10 @@ export class NavigationService implements OnInit {
     this._showNavSubject.next(showHide);
   }
 
+  toggle() {
+    console.log(!this.isShown);
+    this._showNavSubject.next(!this.isShown);
+  }
   toggleNavState(value: boolean) {
     this._showNavSubject.next(value);
   }

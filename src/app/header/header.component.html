@@ -10,11 +10,19 @@
                 aria-label="Click to go to podcast page"
                 height="52px">
         </a>
-        <a role="button"
-            class="navbar-burger"
-            (click)="toggleDarkMode()">
-            {{ darkMode ? '☀️': ' 🌃' }}
-        </a>
+        <div class="navbar-burger"
+            *ngIf="(isSmallScreen$ | async)">
+            <a role="button"
+                (click)="toggleSide()">
+                ⚙️
+            </a>
+        </div>
+        <div class="navbar-burger">
+            <a role="button"
+                (click)="toggleDarkMode()">
+                {{ darkMode ? '☀️': ' 🌃' }}
+            </a>
+        </div>
     </div>
 
     <div id="navbarBasicExample"

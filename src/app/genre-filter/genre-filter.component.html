@@ -23,7 +23,7 @@
                     [ngClass]="option.selected ? 'bd-dropdown--selected' : ''"
                     class="dropdown-item bd-dropdown"
                     (click)="toggleSelect(option)">
-                    {{ option.value }}
+                    <span>{{ option.value }}</span>
                     <span *ngIf="option.selected"
                         class="icon is-small has-text-right">
                         <fa-icon [icon]="checkIcon"></fa-icon>
