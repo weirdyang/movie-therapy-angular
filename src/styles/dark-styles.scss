@@ -36,27 +36,29 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.dropdown * {
+.dropdown,
+.dropdown-menu,
+.dropdown-item,
+.dropdown-content,
+.dropdown-trigger{
   background-color: $color-bg-med;
   color: $color-text-light;
-}
-$dropdown-background: rgba(247, 247, 247, 0.3);
-.dropdown {
-  .dropdown-item:hover {
+  button {
+    background-color: $color-bg-med;
     color: $color-text-light;
-    background-color: $dropdown-background;
   }
+}
 
-  .is-selected {
-    background-color: $dropdown-background;
-    a {
-      color: $color-text-light;
-    }
-  }
-  .dropdown-item {
-    a {
-      background-color: transparent;
-    }
+.bd {
+  &-dropdown{
+      &:hover{
+          background-color:$color-bg-lighter;
+          color: $color-text-lighter;
+          .icon{
+              background-color:$color-bg-lighter;
+              color: $color-text-lighter;
+          }
+      }
   }
 }
 .bd-aside {

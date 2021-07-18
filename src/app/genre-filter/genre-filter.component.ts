@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { faAngleDown, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
 import { share, shareReplay } from 'rxjs/operators';;
 import { genres } from '../core/genres';
@@ -18,7 +18,8 @@ class Option {
 @Component({
   selector: 'app-genre-filter',
   templateUrl: './genre-filter.component.html',
-  styleUrls: ['./genre-filter.component.scss']
+  styleUrls: ['./genre-filter.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class GenreFilterComponent {
 
@@ -48,6 +49,7 @@ export class GenreFilterComponent {
     return this.options.filter(item => item.selected);
   }
   downIcon = faAngleDown;
+  checkIcon = faCheck;
   toggleOpen() {
     this._isOpenSubject.next(!this._isOpenSubject.value);
   }

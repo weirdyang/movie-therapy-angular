@@ -9,7 +9,8 @@
                 (click)="toggleOpen()">
                 <span>{{ placeholder }}</span>
                 <span class="icon is-small">
-                    <fa-icon [icon]="downIcon"></fa-icon>
+                    <fa-icon class="icon"
+                        [icon]="downIcon"></fa-icon>
                 </span>
             </button>
         </div>
@@ -18,12 +19,16 @@
             role="menu">
             <div class="dropdown-content"
                 [style.height]="height">
-                <span *ngFor="let option of options"
-                    [ngClass]="option.selected ? 'is-selected' : ''"
-                    class="dropdown-item"
+                <div *ngFor="let option of options"
+                    [ngClass]="option.selected ? 'bd-dropdown--selected' : ''"
+                    class="dropdown-item bd-dropdown"
                     (click)="toggleSelect(option)">
-                    <a>{{ option.value }}</a>
-                </span>
+                    {{ option.value }}
+                    <span *ngIf="option.selected"
+                        class="icon is-small has-text-right">
+                        <fa-icon [icon]="checkIcon"></fa-icon>
+                    </span>
+                </div>
             </div>
         </div>
     </div>

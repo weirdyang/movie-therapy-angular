@@ -4,26 +4,23 @@ $dropdown-background-selected-hover: rgba(150, 141, 141, 0.8);
     overflow-y: scroll;
 
 }
-.button {
-    border-color: inherit;
-}
-.dropdown-item:hover {
-    background-color:$dropdown-background;
-    &.is-selected > *{
-        color: blanchedalmond;
-    }
-    &.is-selected:hover{
-        background-color: $dropdown-background-selected-hover;
-        > *{
-            color: white;
+
+.bd {
+    &-dropdown{
+        &--selected{
+            .icon {
+                background-color: transparent;
+            }
+        }
+        &:hover{
+            background-color: $dropdown-background;
+            cursor: pointer;
+            .icon {
+                background-color:  $dropdown-background
+            }
         }
     }
 }
-.is-selected {
-    opacity: 0.8;
-    background-color: $dropdown-background
-}
-
 .bd-tags {
     height: 3rem;
     &--shown{
