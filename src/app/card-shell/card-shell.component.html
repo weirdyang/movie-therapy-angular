@@ -2,7 +2,7 @@
 
 
     <div class="columns">
-        <div>
+        <div class="column is-2">
             <!-- <app-side-nav [sidenavTemplateRef]="navContent"
                 [direction]="1"
                 [navWidth]="280"
@@ -15,6 +15,32 @@
                 (click)="displayFilters()"></div>
             <div [ngClass]="(breakPoint$ |async) ? '' :  'bd-container'">
                 <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'">
+                    <span class="menu-label">
+                        Sort Alphabetically
+                    </span>
+                    <div class="columns pt-2">
+                        <div class="column">
+                            <button (click)="toggleAlphaSort(true)"
+                                class="button is-link is-outlined is-fullwidth"
+                                [ngClass]="(alphaSortAsc$ | async) ? 'is-focused' : '' ">
+                                <span>A ➔ Z</span>
+                            </button>
+                        </div>
+                        <div class="column">
+                            <button (click)="toggleAlphaSort(false)"
+                                [ngClass]="(alphaSortAsc$ | async) === false ? 'is-focused' : '' "
+                                class="button is-link is-outlined is-fullwidth">
+                                <span>Z ➔ A </span>
+                            </button>
+                        </div>
+                    </div>
+                    <span class="menu-label">
+                        Genre filters
+                    </span>
+                    <div class="field pt-2">
+                        <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
+                        </app-genre-filter>
+                    </div>
 
                 </app-side-menu>
 
@@ -30,7 +56,6 @@
                             <div class="field is-grouped mb-2 column is-4">
                                 <p class="control">
                                     <button (click)="setFilter('movie')"
-                                        [disabled]="filter === 'movie'"
                                         aria-label="Click to only display movies"
                                         [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
                                         Movies
@@ -38,7 +63,6 @@
                                 </p>
                                 <p class="control">
                                     <button (click)="setFilter('series')"
-                                        [disabled]="filter === 'series'"
                                         aria-label="Click to only display tv-shows"
                                         [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
                                         TV Shows
@@ -47,7 +71,6 @@
                                 <p class="control">
                                     <button (click)="setFilter('all')"
                                         aria-label="Click to display all"
-                                        [disabled]="filter === 'all'"
                                         [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
                                         All
                                     </button>
@@ -60,10 +83,7 @@
                                     </button>
                                 </p> -->
                             </div>
-                            <div class="field column">
-                                <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
-                                </app-genre-filter>
-                            </div>
+
                         </div>
                     </ng-container>
 

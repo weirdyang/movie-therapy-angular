@@ -5,7 +5,7 @@
     <!-- overlay -->
     <div class="side-nav-bar-overlay"
         [ngStyle]="{ 'transition': 'background-color ' + duration + 's, visibility ' + duration + 's' }"
-        [ngClass]="{ 'side-nav-bar-overlay-collapsed': !(showSideNav$ | async) }"
+        [ngClass]="{ 'side-nav-bar-overlay-collapsed': (showSideNav$ | async)===  false }"
         (click)="onSidebarClose()"></div>
 
     <!-- side bar-->

@@ -14,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   exports: [
     GenreFilterComponent,
+    FontAwesomeModule
   ]
 })
 export class GenreFilterModule { }
