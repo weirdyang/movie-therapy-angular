@@ -123,10 +123,19 @@ export class CardShellComponent implements OnDestroy {
       this.virtualScroll.checkViewportSize();
     }, 500);
   }
-
-  allShows$ = combineLatest([this.movies$, this.shows$, this.filter$, this.search$])
+  private _genreFilterSubject = new BehaviorSubject<string[]>([]);
+  genreFilter$ = this._genreFilterSubject.asObservable()
     .pipe(
-      map(([movies, shows, filter, search]) => {
+      shareReplay(1)
+    );
+  updateFilters(options: string[]) {
+    this._genreFilterSubject.next(options);
+  };
+
+  allShows$ = combineLatest(
+    [this.movies$, this.shows$, this.filter$, this.genreFilter$])
+    .pipe(
+      map(([movies, shows, filter, genres]) => {
         let consolidated: Show[] = [];
         if (filter === 'all') {
           consolidated = [...movies, ...shows]
@@ -137,9 +146,11 @@ export class CardShellComponent implements OnDestroy {
             : [...movies]
         }
 
-        if (search.length !== 0) {
+        if (genres.length !== 0) {
           return consolidated.filter(item =>
-            item.data.Genre?.toLowerCase().includes(search.toLowerCase()));
+            genres.some(genre => item
+              .data?.Genre?.toLowerCase()
+              .includes(genre.toLowerCase())));
         }
         return consolidated.sort();
       }),

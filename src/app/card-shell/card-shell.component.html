@@ -80,7 +80,7 @@
                 </div>
             </section>
             <section>
-                <app-genre-filter></app-genre-filter>
+                <app-genre-filter (selectedOptionsChanged)="updateFilters($event)"></app-genre-filter>
             </section>
 
             <section id="main">

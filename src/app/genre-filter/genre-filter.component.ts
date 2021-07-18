@@ -1,8 +1,8 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject } from 'rxjs';
-import { share, shareReplay } from 'rxjs/operators';
+import { share, shareReplay } from 'rxjs/operators';;
 import { genres } from '../core/genres';
 
 class Option {
@@ -41,6 +41,9 @@ export class GenreFilterComponent {
   @Input()
   height: string = "25vh";
 
+  @Output()
+  selectedOptionsChanged = new EventEmitter<string[]>();
+
   get selectedOptions() {
     return this.options.filter(item => item.selected);
   }
@@ -50,5 +53,9 @@ export class GenreFilterComponent {
   }
   toggleSelect(option: Option) {
     option.selected = !option.selected;
+    this.selectedOptionsChanged
+      .emit(
+        this.selectedOptions
+          .map(item => item.value));
   }
 }

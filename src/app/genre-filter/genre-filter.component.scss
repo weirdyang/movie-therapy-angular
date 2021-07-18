@@ -1,4 +1,5 @@
 $dropdown-background: rgba(247, 247, 247,0.8);
+$dropdown-background-selected-hover: rgba(150, 141, 141, 0.8);
 .dropdown-content {
     overflow-y: scroll;
 
@@ -7,15 +8,27 @@ $dropdown-background: rgba(247, 247, 247,0.8);
     border-color: inherit;
 }
 .dropdown-item:hover {
-    opacity: 0.8;
-    background-color:$dropdown-background
+    background-color:$dropdown-background;
+    &.is-selected > *{
+        color: blanchedalmond;
+    }
+    &.is-selected:hover{
+        background-color: $dropdown-background-selected-hover;
+        > *{
+            color: white;
+        }
+    }
 }
 .is-selected {
     opacity: 0.8;
-    color: black;
     background-color: $dropdown-background
 }
 
 .bd-tags {
     height: 3rem;
+    &--shown{
+        @media screen and (max-width: 768px) {
+            visibility: collapse;
+        }
+    }
 }
