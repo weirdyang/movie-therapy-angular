@@ -61,17 +61,8 @@
                                 </p>
                             </div>
                             <div class="field column">
-                                <p class="control">
-                                    <input type="search"
-                                        id="site-search"
-                                        class="input"
-                                        [ngModel]="genre"
-                                        (ngModelChange)="updateSearch($event)"
-                                        placeholder="Filter by genre"
-                                        name="q"
-                                        aria-label="Search shows by gener">
-
-                                </p>
+                                <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
+                                </app-genre-filter>
                             </div>
                         </div>
                     </ng-container>
@@ -79,9 +70,7 @@
 
                 </div>
             </section>
-            <section>
-                <app-genre-filter (selectedOptionsChanged)="updateFilters($event)"></app-genre-filter>
-            </section>
+
 
             <section id="main">
                 <div class="container">
