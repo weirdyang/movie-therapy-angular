@@ -24,7 +24,7 @@ export class GenreFilterComponent {
 
   constructor() { }
 
-  private _isOpenSubject = new BehaviorSubject<boolean>(true);
+  private _isOpenSubject = new BehaviorSubject<boolean>(false);
 
   isOpen$ = this._isOpenSubject.asObservable()
     .pipe(
