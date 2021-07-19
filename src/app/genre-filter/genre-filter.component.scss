@@ -1,8 +1,22 @@
 $dropdown-background: rgba(247, 247, 247,0.8);
 $dropdown-background-selected-hover: rgba(150, 141, 141, 0.8);
+$scrollbar-color: rgba(152, 152, 152, 0.3);
+// https://css-tricks.com/almanac/properties/s/scrollbar/
 .dropdown-content {
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0.5em;
+      }
 
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 0.15rem rgba(0,0,0,0.3);
+        box-shadow: inset 0 0 0.15rem rgba(0,0,0,0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $scrollbar-color;
+        outline: 1px $dropdown-background-selected-hover
+      }
 }
 
 .bd {
