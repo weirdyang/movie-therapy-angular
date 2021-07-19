@@ -8,7 +8,7 @@
                 (click)="displayFilters()"></div>
             <div [ngClass]="(breakPoint$ |async) ? '' :  'bd-container'">
                 <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'">
-                    <div class="container pr-1">
+                    <div class="container bd-menu">
                         <span class="menu-label">
                             Types
                         </span>
@@ -38,36 +38,39 @@
                                 </p>
                             </div>
                         </ng-container>
-
-
                     </div>
-                    <span class="menu-label">
-                        Sort Alphabetically
-                    </span>
-                    <div class="pt-1"
-                        [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
-                        <div class="control">
-                            <button (click)="toggleAlphaSort(true)"
-                                [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async)}"
-                                class="button is-link is-outlined is-fullwidth">
-                                <span>A ➔ Z</span>
-                            </button>
+                    <section class="container bd-menu">
+                        <span class="menu-label">
+                            Sort Alphabetically
+                        </span>
+                        <div class="pt-1"
+                            [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
+                            <div class="control">
+                                <button (click)="toggleAlphaSort(true)"
+                                    [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async)}"
+                                    class="button is-link is-outlined is-fullwidth">
+                                    <span>A ➔ Z</span>
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button (click)="toggleAlphaSort(false)"
+                                    [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async) === false}"
+                                    class="button is-link is-outlined is-fullwidth">
+                                    <span>Z ➔ A</span>
+                                </button>
+                            </div>
                         </div>
-                        <div class="control">
-                            <button (click)="toggleAlphaSort(false)"
-                                [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async) === false}"
-                                class="button is-link is-outlined is-fullwidth">
-                                <span>Z ➔ A</span>
-                            </button>
+                    </section>
+                    <section class="container bd-menu">
+                        <span class="menu-label">
+                            Genre filters
+                        </span>
+                        <div class="field pt-2 bd-tags-container">
+                            <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
+                            </app-genre-filter>
                         </div>
-                    </div>
-                    <span class="menu-label">
-                        Genre filters
-                    </span>
-                    <div class="field pt-2 bd-tags-container">
-                        <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
-                        </app-genre-filter>
-                    </div>
+
+                    </section>
 
                 </app-side-menu>
 

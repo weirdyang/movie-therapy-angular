@@ -23,6 +23,13 @@
 }
 $bd-aside-width: 15rem;
 .bd{
+    &-menu {
+        margin-right: 1rem;
+        padding-left: 0;
+        @media screen and (max-width: 768px) {
+            margin: auto;
+        }
+    }
     &-tags-container {
         max-width: 11.25rem;
     }
