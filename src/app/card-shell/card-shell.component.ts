@@ -18,7 +18,7 @@ import { faSortAlphaDown, faSortAlphaUp } from '@fortawesome/free-solid-svg-icon
   encapsulation: ViewEncapsulation.None,
 })
 
-export class CardShellComponent implements OnDestroy, OnInit {
+export class CardShellComponent implements OnDestroy {
   @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
   protected readonly destroy$ = new Subject();
 
@@ -42,13 +42,13 @@ export class CardShellComponent implements OnDestroy, OnInit {
     this.navigationService.setShowNav(value);
   }
 
-  displayFilters() {
+  toggleMenu() {
     this.showMenu = !this.showMenu;
   }
   private _filterSubject = new BehaviorSubject<string>("all");
   filter$ = this._filterSubject.asObservable()
     .pipe(
-      debounce(_ => interval(500)),
+      debounceTime(100),
       shareReplay(1)
     );
 
@@ -200,25 +200,6 @@ export class CardShellComponent implements OnDestroy, OnInit {
       sort: this._alpahSortSubject.value,
     }
     localStorage.setItem('state', JSON.stringify(data));
-    localStorage.setItem('test', '1');
   }
 
-  private _scrollTo(scrOffset: number) {
-    console.log('ScrollTo', scrOffset);
-    this.virtualScroll?.scrollToOffset(scrOffset);
-  }
-  ngOnInit(): void {
-    if (localStorage.getItem('state')) {
-      console.log(localStorage.getItem('state'));
-      const data = JSON.parse(localStorage.getItem('state') as string);
-      this._alpahSortSubject.next(data.sort);
-      this._filterSubject.next(data.filter);
-      this._genreFilterSubject.next(data.genres ? data.genres : []);
-      console.log(data.filter, data.genres, data.sort);
-      setTimeout(() => {
-        this._scrollTo(data.index);
-      }, 2000)
-    }
-    window.onbeforeunload = () => this.ngOnDestroy();
-  }
 }

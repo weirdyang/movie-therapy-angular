@@ -3,12 +3,12 @@
 
     <div class="columns is-gapless">
         <div class="column is-narrow">
-            <div class="bd-overlay"
-                [ngClass]="{ 'bd-overlay--active': showMenu}"
-                (click)="displayFilters()"></div>
-            <div [ngClass]="(breakPoint$ |async) ? '' :  'bd-container'">
-                <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'">
-                    <div class="container bd-menu">
+            <ng-container>
+                <app-side-menu [active]="showMenu"
+                    [isSmallScreen]="(breakPoint$ | async) ? true : false">
+                    <div class="
+                    container
+                    bd-menu">
                         <span class="menu-label">
                             Types
                         </span>
@@ -73,17 +73,15 @@
                     </section>
 
                 </app-side-menu>
-
-            </div>
-
+            </ng-container>
         </div>
         <div class="column">
             <section id="main">
                 <div class="container">
                     <ng-container *ngIf='allShows$ | async as data'>
                         <cdk-virtual-scroll-viewport autosize
-                            [maxBufferPx]="800"
-                            [minBufferPx]="800"
+                            [maxBufferPx]="200"
+                            [minBufferPx]="200      "
                             class="scroll-viewport pb-2">
                             <div *cdkVirtualFor='let row of data; trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
                                 class="columns is-multiline px-1">

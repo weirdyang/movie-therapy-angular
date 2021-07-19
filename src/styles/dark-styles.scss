@@ -62,5 +62,7 @@
   }
 }
 .bd-aside {
+  @media screen and (max-width: 768px) {
     background-color: $color-bg-med;
+  }
 }

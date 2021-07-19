@@ -1,3 +1,10 @@
-<aside class="menu">
-    <ng-content></ng-content>
-</aside>
+<div class="bd-overlay"
+    [ngClass]="{ 'bd-overlay--active': active}"
+    (click)="toggleMenu()"></div>
+<div [ngClass]="isSmallScreen ?  '' :  'bd-container'">
+    <div [ngClass]="active ? 'bd-aside bd-aside--active' : 'bd-aside'">
+        <aside class="menu">
+            <ng-content></ng-content>
+        </aside>
+    </div>
+</div>
