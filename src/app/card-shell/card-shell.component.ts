@@ -18,7 +18,7 @@ import { faSortAlphaDown, faSortAlphaUp } from '@fortawesome/free-solid-svg-icon
   encapsulation: ViewEncapsulation.None,
 })
 
-export class CardShellComponent implements OnDestroy {
+export class CardShellComponent implements OnDestroy, OnInit {
   @ViewChild(CdkVirtualScrollViewport, { static: false }) virtualScroll!: CdkVirtualScrollViewport;
   protected readonly destroy$ = new Subject();
 
@@ -45,15 +45,15 @@ export class CardShellComponent implements OnDestroy {
   displayFilters() {
     this.showMenu = !this.showMenu;
   }
-  private filterSubject = new BehaviorSubject<string>("all");
-  filter$ = this.filterSubject.asObservable()
+  private _filterSubject = new BehaviorSubject<string>("all");
+  filter$ = this._filterSubject.asObservable()
     .pipe(
       debounce(_ => interval(500)),
       shareReplay(1)
     );
 
   setFilter(filterString: string) {
-    this.filterSubject.next(filterString);
+    this._filterSubject.next(filterString);
   }
 
   private searchSubject = new BehaviorSubject<string>("");
@@ -79,6 +79,7 @@ export class CardShellComponent implements OnDestroy {
     private navigationService: NavigationService,
     public breakpointObserver: BreakpointObserver,
     private handsetService: HandsetService) { }
+
 
   breakPoint$ = this.handsetService.isScreenSmall$;
 
@@ -192,5 +193,32 @@ export class CardShellComponent implements OnDestroy {
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
+    const data = {
+      filter: this._filterSubject.value,
+      genres: this._genreFilterSubject.value,
+      index: this.virtualScroll?.getOffsetToRenderedContentStart()?.toString(),
+      sort: this._alpahSortSubject.value,
+    }
+    localStorage.setItem('state', JSON.stringify(data));
+    localStorage.setItem('test', '1');
+  }
+
+  private _scrollTo(scrOffset: number) {
+    console.log('ScrollTo', scrOffset);
+    this.virtualScroll?.scrollToOffset(scrOffset);
+  }
+  ngOnInit(): void {
+    if (localStorage.getItem('state')) {
+      console.log(localStorage.getItem('state'));
+      const data = JSON.parse(localStorage.getItem('state') as string);
+      this._alpahSortSubject.next(data.sort);
+      this._filterSubject.next(data.filter);
+      this._genreFilterSubject.next(data.genres ? data.genres : []);
+      console.log(data.filter, data.genres, data.sort);
+      setTimeout(() => {
+        this._scrollTo(data.index);
+      }, 2000)
+    }
+    window.onbeforeunload = () => this.ngOnDestroy();
   }
 }
