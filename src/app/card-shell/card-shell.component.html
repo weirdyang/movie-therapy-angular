@@ -3,7 +3,6 @@
 
     <div class="columns is-gapless">
         <div class="column is-narrow">
-
             <div class="bd-overlay"
                 [ngClass]="{ 'bd-overlay--active': showMenu}"
                 (click)="displayFilters()"></div>
@@ -58,7 +57,7 @@
                             <button (click)="toggleAlphaSort(false)"
                                 [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async) === false}"
                                 class="button is-link is-outlined is-fullwidth">
-                                <span>Z ➔ A </span>
+                                <span>Z ➔ A</span>
                             </button>
                         </div>
                     </div>
@@ -76,12 +75,6 @@
 
         </div>
         <div class="column">
-
-            <section class="section pt-2 mt-0 mb-0 pb-2">
-
-            </section>
-
-
             <section id="main">
                 <div class="container">
                     <ng-container *ngIf='allShows$ | async as data'>
