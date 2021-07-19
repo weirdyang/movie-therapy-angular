@@ -6,6 +6,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Site lives [here](https://lucid-thompson-158d2d.netlify.app/)
 
+Staging [site](http://admiring-visvesvaraya-dd49db.netlify.app)
+
 ## About
 
 This project provides an interface to search and view movie and tv series recommended in the podcast [‎Movie Therapy with Rafer & Kristen](https://www.raferandkristen.com/).
