@@ -21,8 +21,11 @@
   opacity: 0.8;
   pointer-events: auto;
 }
-
+$bd-aside-width: 15rem;
 .bd{
+    &-tags-container {
+        max-width: 11.25rem;
+    }
     &-buttons {
         @media screen and (max-width: 768px) {
             display: flex;
@@ -59,16 +62,16 @@
     }
     &-aside{
         height: 85vh;
-        width: 11.25rem;
+        width: $bd-aside-width;
         @media screen and (max-width: 768px) {
             padding-left: 1rem;
             padding-right: 1rem;
             height: 100%; /* 100% Full-height */
-            width: 11.25rem; /* 0 width - change this with JavaScript */
+            width: $bd-aside-width; /* 0 width - change this with JavaScript */
             position: absolute; /* Stay in place */
             z-index: 10001; /* Stay on top */
             top: 0; /* Stay at the top */
-            left: -11.25rem;
+            left: -$bd-aside-width;
             background-color: white;
             overflow-x: hidden; /* Disable horizontal scroll */
             padding-top: 60px; /* Place content 60px from the top */
