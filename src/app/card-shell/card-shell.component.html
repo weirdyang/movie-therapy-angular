@@ -1,34 +1,62 @@
 <section class="pt-4">
 
 
-    <div class="columns">
-        <div class="column is-2">
-            <!-- <app-side-nav [sidenavTemplateRef]="navContent"
-                [direction]="1"
-                [navWidth]="280"
-                [duration]="0.5"></app-side-nav>
-            <ng-template #navContent>
-                <app-side-menu></app-side-menu>
-            </ng-template> -->
+    <div class="columns is-gapless">
+        <div class="column is-narrow">
+
             <div class="bd-overlay"
                 [ngClass]="{ 'bd-overlay--active': showMenu}"
                 (click)="displayFilters()"></div>
             <div [ngClass]="(breakPoint$ |async) ? '' :  'bd-container'">
                 <app-side-menu [ngClass]="showMenu? 'bd-aside bd-aside--active' : 'bd-aside'">
+                    <div class="container">
+                        <span class="menu-label">
+                            Types
+                        </span>
+                        <ng-container *ngIf="(filter$ | async) as filter">
+                            <div class="pt-1"
+                                [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
+                                <p class="control">
+                                    <button (click)="setFilter('movie')"
+                                        aria-label="Click to only display movies"
+                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie', 'is-fullwidth' : (breakPoint$ |async) }">
+                                        Movies
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <button (click)="setFilter('series')"
+                                        aria-label="Click to only display tv-shows"
+                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series', 'is-fullwidth mt-1' : (breakPoint$ |async)  }">
+                                        TV Shows
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <button (click)="setFilter('all')"
+                                        aria-label="Click to display all"
+                                        [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all', 'is-fullwidth mt-1' : (breakPoint$ |async)  }">
+                                        All
+                                    </button>
+                                </p>
+                            </div>
+                        </ng-container>
+
+
+                    </div>
                     <span class="menu-label">
                         Sort Alphabetically
                     </span>
-                    <div class="columns pt-2">
-                        <div class="column">
+                    <div class="pt-1"
+                        [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
+                        <div class="control">
                             <button (click)="toggleAlphaSort(true)"
-                                class="button is-link is-outlined is-fullwidth"
-                                [ngClass]="(alphaSortAsc$ | async) ? 'is-focused' : '' ">
+                                [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async)}"
+                                class="button is-link is-outlined is-fullwidth">
                                 <span>A ➔ Z</span>
                             </button>
                         </div>
-                        <div class="column">
+                        <div class="control">
                             <button (click)="toggleAlphaSort(false)"
-                                [ngClass]="(alphaSortAsc$ | async) === false ? 'is-focused' : '' "
+                                [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async) === false}"
                                 class="button is-link is-outlined is-fullwidth">
                                 <span>Z ➔ A </span>
                             </button>
@@ -50,45 +78,7 @@
         <div class="column">
 
             <section class="section pt-2 mt-0 mb-0 pb-2">
-                <div class="container">
-                    <ng-container *ngIf="(filter$ | async) as filter">
-                        <div class="columns is-centered is-gapless px-1">
-                            <div class="field is-grouped mb-2 column is-4">
-                                <p class="control">
-                                    <button (click)="setFilter('movie')"
-                                        aria-label="Click to only display movies"
-                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
-                                        Movies
-                                    </button>
-                                </p>
-                                <p class="control">
-                                    <button (click)="setFilter('series')"
-                                        aria-label="Click to only display tv-shows"
-                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
-                                        TV Shows
-                                    </button>
-                                </p>
-                                <p class="control">
-                                    <button (click)="setFilter('all')"
-                                        aria-label="Click to display all"
-                                        [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
-                                        All
-                                    </button>
-                                </p>
-                                <!-- <p class="control filter-menu-btn">
-                                    <button (click)="displayFilters()"
-                                        aria-label="Click to display filter menu"
-                                        [ngClass]="{'button is-primary': true }">
-                                        All
-                                    </button>
-                                </p> -->
-                            </div>
 
-                        </div>
-                    </ng-container>
-
-
-                </div>
             </section>
 
 

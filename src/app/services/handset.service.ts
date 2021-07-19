@@ -17,8 +17,6 @@ export class HandsetService implements OnDestroy {
     this.destroy$.complete();
   }
   isScreenSmall$ = this.breakpointObserver.observe([
-    Breakpoints.Handset,
-    Breakpoints.TabletPortrait,
     "(max-width: 768px)",
   ]).pipe(
     map(result => result.matches),

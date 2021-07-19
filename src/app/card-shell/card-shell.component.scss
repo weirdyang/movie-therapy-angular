@@ -23,6 +23,12 @@
 }
 
 .bd{
+    &-buttons {
+        @media screen and (max-width: 768px) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
     &-container {
         border-radius: 0.25em;
         height: calc(85vh);
