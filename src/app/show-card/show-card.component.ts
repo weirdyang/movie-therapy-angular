@@ -6,7 +6,7 @@ import { Rating, Show } from '../types/show';
   templateUrl: './show-card.component.html',
   styleUrls: ['./show-card.component.scss']
 })
-export class ShowCardComponent implements OnInit {
+export class ShowCardComponent {
   @Input()
   show!: Show
 
@@ -26,8 +26,6 @@ export class ShowCardComponent implements OnInit {
 
   get imdbUrl() {
     return `https://www.imdb.com/title/${this.show.imdbId}/`;
-  }
-  ngOnInit(): void {
   }
 
 }

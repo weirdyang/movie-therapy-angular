@@ -1,6 +1,6 @@
 <!-- side bar main wrapper -->
 <div class="side-nav-bar"
-    [ngClass]="{ 'side-nav-bar-collapsed': !(showSideNav$ | async) }">
+    [ngClass]="{ 'side-nav-bar-collapsed': (showSideNav$ | async) === false }">
 
     <!-- overlay -->
     <div class="side-nav-bar-overlay"
