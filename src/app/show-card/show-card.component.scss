@@ -1,3 +1,4 @@
+@use "~bulma/sass/utilities/mixins.sass" as mixins;
 :host{
     font-size: 1rem;
 }
@@ -15,7 +16,10 @@
 
 .card .card-image,
 .card .card-image .image img {
-  width: 300px;
+  max-width: 300px;
+  @include mixins.tablet  {
+    max-width: 12rem;
+  }
 }
 
 .card-image{
