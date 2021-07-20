@@ -15,7 +15,7 @@
 
 .card .card-image,
 .card .card-image .image img {
-  width: 200px;
+  width: 300px;
 }
 
 .card-image{
@@ -24,8 +24,6 @@
 }
 .bd {
   &-card-image{
-    min-height: 200px;
-    min-width: 200px;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
