@@ -1,4 +1,6 @@
 @use "~bulma/sass/utilities/mixins.sass" as mixins;
+@import "~bulma/sass/utilities/derived-variables.sass";
+
 :host{
     font-size: 1rem;
 }
@@ -13,12 +15,22 @@
     }
   }
 }
-
+$tablet-wide: 1215px;
 .card .card-image,
 .card .card-image .image img {
-  max-width: 300px;
-  @include mixins.tablet  {
+  max-width: 16rem;
+
+  @include mixins.from(769px){
+    @include mixins.until(900px){
+      max-width: 9rem;
+    }
+  }
+  @media screen and (min-width: 900px) and (max-width: $tablet-wide - 1px){
     max-width: 12rem;
+  }
+
+  @include mixins.from($tablet-wide){
+      max-width: 14rem;
   }
 }
 
