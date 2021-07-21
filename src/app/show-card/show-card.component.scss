@@ -30,7 +30,7 @@ $tablet-wide: 1215px;
   }
 
   @include mixins.from($tablet-wide){
-      max-width: 14rem;
+      max-width: 16rem;
   }
 }
 
