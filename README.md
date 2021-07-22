@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 version one of site lives [here](https://lucid-thompson-158d2d.netlify.app/)
 
-current[site](http://admiring-visvesvaraya-dd49db.netlify.app)
+current [site can be found here](http://admiring-visvesvaraya-dd49db.netlify.app)
 
 ## About
 
