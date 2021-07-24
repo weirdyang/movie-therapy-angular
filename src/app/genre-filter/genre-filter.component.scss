@@ -15,24 +15,24 @@ $scrollbar-color: rgba(152, 152, 152, 0.3);
 
       &::-webkit-scrollbar-thumb {
         background-color: $scrollbar-color;
-        outline: 1px $dropdown-background-selected-hover
+        outline: 1px $dropdown-background-selected-hover;
       }
 }
 
 .bd {
-    &-dropdown{
+    &-dropdown {
         display: flex;
         justify-content: space-between;
-        &--selected{
+        &--selected {
             .icon {
                 background-color: transparent;
             }
         }
-        &:hover{
+        &:hover {
             background-color: $dropdown-background;
             cursor: pointer;
             .icon {
-                background-color:  $dropdown-background
+                background-color:  transparent;
             }
         }
     }

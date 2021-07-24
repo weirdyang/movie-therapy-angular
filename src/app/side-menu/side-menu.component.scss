@@ -1,6 +1,6 @@
 $bd-aside-width: 15rem;
-.bd{
-    &-menu-header{
+.bd {
+    &-menu-header {
         display: flex;
         justify-content: space-between;
     }
@@ -18,7 +18,7 @@ $bd-aside-width: 15rem;
         }
 
     }
-    &-overlay{
+    &-overlay {
         z-index: 1000;
         width: 0px;
         bottom: 0;
@@ -33,10 +33,15 @@ $bd-aside-width: 15rem;
             background: rgba(0,0,0,0.5);
         }
     }
-    &-aside{
+    &-aside {
 
         height: 85vh;
         width: $bd-aside-width;
+        @media screen and (min-width:1600px){
+            display: flex;
+            justify-content: flex-end;
+            width: 25vw;
+        }
         @media screen and (max-width: 768px) {
             position: fixed;
             padding-left: 1rem;
