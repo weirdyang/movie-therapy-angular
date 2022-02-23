@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { shareReplay } from 'rxjs/operators';
 import { ThemingService } from '../services/core/theming.service';
+import { HandsetService } from '../services/handset.service';
+import { NavigationService } from '../services/navigation.service';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +11,9 @@ import { ThemingService } from '../services/core/theming.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private navigationService: NavigationService,
+    private handsetService: HandsetService) { }
 
   @Input()
   darkMode!: boolean | null;
@@ -18,6 +23,14 @@ export class HeaderComponent implements OnInit {
   toggleDarkMode() {
     this.toggleDarkEvent.emit(!this.darkMode);
   }
+  toggleSide() {
+    this.navigationService.toggle()
+  }
+  isSmallScreen$ = this.handsetService.isScreenSmall$
+  isSideShown$ = this.navigationService.showNav$
+    .pipe(shareReplay(1));
+
+
   ngOnInit(): void {
     // Get all "navbar-burger" elements
     const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);

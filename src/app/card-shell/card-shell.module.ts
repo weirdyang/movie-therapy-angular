@@ -6,6 +6,10 @@ import { ShowCardModule } from '../show-card/show-card.module';
 import { FormsModule } from '@angular/forms';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ScrollingModule as ExperimentalScrollingModule } from "@angular/cdk-experimental/scrolling";
+import { SideMenuModule } from '../side-menu/side-menu.module';
+import { SideNavModule } from '../side-nav/side-nav.module';
+import { GenreFilterModule } from '../genre-filter/genre-filter.module';
+import { LayoutModule } from '@angular/cdk/layout';
 @NgModule({
   declarations: [
     CardShellComponent
@@ -16,7 +20,11 @@ import { ScrollingModule as ExperimentalScrollingModule } from "@angular/cdk-exp
     ShowCardModule,
     FormsModule,
     ScrollingModule,
-    ExperimentalScrollingModule
+    ExperimentalScrollingModule,
+    SideMenuModule,
+    SideNavModule,
+    GenreFilterModule,
+    LayoutModule
   ],
   exports: [
     ScrollingModule,

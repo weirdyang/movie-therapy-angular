@@ -1,56 +1,68 @@
 @charset "utf-8";
+@import "./variables";
 
-$purple: #8A4D76;
-$pink: #FA7C91;
-$brown: #757763;
-$beige-light: #D0D1CD;
-$beige-lighter: #EFF0EB;
-
-$grey-dark: $brown;
-$grey-light: $beige-light;
-$primary: $purple;
-$link: $beige-light;
-
-$color-bg-darkest: #13141b;
-$color-bg-darker: #1b1e27;
-$color-bg-dark: #232837;
-$color-bg-med: #2f3646;
-$color-bg-light: #455066;
-$color-bg-lighter: #5b6882;
-
-$color-text-dark: #72809b;
-$color-text-med-dark: #919db5;
-$color-text-med: #a0aabe;
-$color-text-med-light: #d9dce1;
-$color-text-light: #f0f1f6;
-$color-text-lighter: #fff;
-
-$body-background-color: $color-bg-darker;
-$body-color: $beige-lighter;
-
-
-.button{
-    &.is-link.is-outlined{
-        color: $color-text-light;
-    }
+.button {
+  &.is-link.is-outlined {
+    color: $color-text-light;
+  }
 }
 
 .title {
-    color: $color-text-light;
+  color: $color-text-light;
 }
 .subtitle {
-    color: $color-text-med;
+  color: $color-text-med;
 }
-       //
+//
 .card {
-    background-color: $color-bg-dark;
-    color: $body-color;
+  background-color: $color-bg-dark;
+  color: $body-color;
 }
-.navbar-menu.is-active{
-    background-color: $color-bg-med !important;
-    .navbar-item:hover{
-        background-color: $color-text-med-light;
-    }
+.navbar-menu.is-active {
+  background-color: $color-bg-med !important;
+  .navbar-item:hover {
+    background-color: $color-text-med-light;
+  }
+}
+.menu-list a {
+  border-radius: 2px;
+  color: $color-text-light;
+  display: block;
+  padding: 0.5em 0.75em;
+}
+.menu-label {
+  color: $color-text-med;
+  font-size: 0.75em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.dropdown,
+.dropdown-menu,
+.dropdown-item,
+.dropdown-content,
+.dropdown-trigger{
+  background-color: $color-bg-light;
+  color: $color-text-light;
+  button {
+    background-color: $color-bg-med;
+    color: $color-text-light;
+  }
 }
 
-
+.bd {
+  &-dropdown{
+      &:hover{
+          background-color:$color-bg-lighter;
+          color: $color-text-lighter;
+          .icon{
+              background-color:$color-bg-lighter;
+              color: $color-text-lighter;
+          }
+      }
+  }
+}
+.bd-aside {
+  @media screen and (max-width: 768px) {
+    background-color: $color-bg-med;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="field">
+    <div class="dropdown"
+        [ngClass]="(isOpen$ | async) ? 'is-active': ''">
+        <div class="dropdown-trigger">
+            <button class="button is-outlined"
+                type="button"
+                aria-haspopup="true"
+                aria-controls="dropdown-menu"
+                (click)="toggleOpen()">
+                <span>{{ placeholder }}</span>
+                <span class="icon is-small">
+                    <fa-icon class="icon"
+                        [icon]="downIcon"></fa-icon>
+                </span>
+            </button>
+        </div>
+        <div class="dropdown-menu"
+            id="dropdown-menu"
+            role="menu">
+            <div class="dropdown-content"
+                [style.height]="height">
+                <div *ngFor="let option of options"
+                    [ngClass]="option.selected ? 'bd-dropdown--selected' : ''"
+                    class="dropdown-item bd-dropdown"
+                    (click)="toggleSelect(option)">
+                    <span>{{ option.value }}</span>
+                    <span *ngIf="option.selected"
+                        class="icon is-small has-text-right">
+                        <fa-icon [icon]="checkIcon"></fa-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tags bd-tags py-1 bd-tags--shown">
+        <div class="control"
+            *ngFor="let selected of selectedOptions">
+            <div class="control p-1">
+                <div class="tags has-addons">
+                    <a class="tag is-info">{{selected.value}}</a>
+                    <a class="tag is-delete is-info"
+                        (click)="toggleSelect(selected)"></a>
+                </div>
+            </div>
+        </div>
+    </div>
