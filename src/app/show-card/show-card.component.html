@@ -1,7 +1,10 @@
 <article class="card bm--card-equal-height">
     <div class="card-image">
-        <figure class="image is-2by3">
+        <figure class="image is-3by4">
             <img loading="lazy"
+                width="300"
+                height="400"
+                class="bd-card-image"
                 [src]="imageSource"
                 alt="Movie poster">
         </figure>
@@ -20,6 +23,8 @@
             <ng-container *ngIf="hasImdbPage">
                 <br />
                 <a [href]="imdbUrl"
+                    rel="noopener"
+                    target="_blank"
                     class="
                     button
                     is-link

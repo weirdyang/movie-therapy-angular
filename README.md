@@ -1,10 +1,12 @@
-# BulmaAngular
+# Bulma Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/6baa71ea-e5fd-4c91-8010-8464e4995327/deploy-status)](https://app.netlify.com/sites/lucid-thompson-158d2d/deploys)
 
-Site lives [here](https://lucid-thompson-158d2d.netlify.app/)
+version one of site lives [here](https://lucid-thompson-158d2d.netlify.app/)
+
+current [site can be found here](http://admiring-visvesvaraya-dd49db.netlify.app)
 
 ## About
 

@@ -1,7 +1,10 @@
-:host{
+@use "~bulma/sass/utilities/mixins.sass" as mixins;
+@import "~bulma/sass/utilities/derived-variables.sass";
+
+:host {
     font-size: 1rem;
 }
-.bm{
+.bm {
   &--card-equal-height {
     display: flex;
     flex-direction: column;
@@ -12,13 +15,31 @@
     }
   }
 }
-
+$tablet-wide: 1215px;
 .card .card-image,
 .card .card-image .image img {
-  width: 200px;
+  max-width: 16rem;
+
+  @include mixins.from(769px) {
+    @include mixins.until(900px) {
+      max-width: 9rem;
+    }
+  }
+  @media screen and (min-width: 900px) and (max-width: $tablet-wide - 1px){
+    max-width: 12rem;
+  }
+
+  @include mixins.from($tablet-wide) {
+      max-width: 16rem;
+  }
 }
 
-.card-image{
+.card-image {
   padding-top: 1rem;
   margin: auto;
+}
+.bd {
+  &-card-image{
+    object-fit: contain;
+  }
 }

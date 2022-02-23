@@ -1,69 +1,98 @@
-<section class="section pt-2 mt-0 mb-0 pb-2">
-    <div class="container">
-        <ng-container *ngIf="(filter$ | async) as filter">
-            <div class="columns is-centered is-gapless px-1">
-                <div class="field is-grouped mb-2 column is-4">
-                    <p class="control">
-                        <button (click)="setFilter('movie')"
-                            [disabled]="filter === 'movie'"
-                            aria-label="Click to only display movies"
-                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie' }">
-                            Movies
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button (click)="setFilter('series')"
-                            [disabled]="filter === 'series'"
-                            aria-label="Click to only display tv-shows"
-                            [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series' }">
-                            TV Shows
-                        </button>
-                    </p>
-                    <p class="control">
-                        <button (click)="setFilter('all')"
-                            aria-label="Click to display all"
-                            [disabled]="filter === 'all'"
-                            [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all' }">
-                            All
-                        </button>
-                    </p>
+<section class="pt-4">
 
+
+    <div class="columns is-gapless">
+        <div class="column is-narrow">
+            <ng-container>
+                <app-side-menu [active]="showMenu"
+                    [isSmallScreen]="(breakPoint$ | async) ? true : false">
+                    <div class="
+                    container
+                    bd-menu">
+                        <span class="menu-label">
+                            Types
+                        </span>
+                        <ng-container *ngIf="(filter$ | async) as filter">
+                            <div class="pt-1"
+                                [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
+                                <p class="control">
+                                    <button (click)="setFilter('movie')"
+                                        aria-label="Click to only display movies"
+                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'movie', 'is-fullwidth' : (breakPoint$ |async) }">
+                                        Movies
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <button (click)="setFilter('series')"
+                                        aria-label="Click to only display tv-shows"
+                                        [ngClass]="{'button is-link': true, 'is-outlined' : filter !== 'series', 'is-fullwidth mt-1' : (breakPoint$ |async)  }">
+                                        Series
+                                    </button>
+                                </p>
+                                <p class="control">
+                                    <button (click)="setFilter('all')"
+                                        aria-label="Click to display all"
+                                        [ngClass]="{'button is-primary': true, 'is-outlined' : filter !== 'all', 'is-fullwidth mt-1' : (breakPoint$ |async)  }">
+                                        All
+                                    </button>
+                                </p>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <section class="container bd-menu mt-2">
+                        <span class="menu-label">
+                            Sort Alphabetically
+                        </span>
+                        <div class="pt-1"
+                            [ngClass]="(breakPoint$ |async) ? 'bd-buttons' : 'field has-addons'">
+                            <div class="control">
+                                <button (click)="toggleAlphaSort(true)"
+                                    [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async)}"
+                                    class="button is-link is-outlined is-fullwidth">
+                                    <span>A ➔ Z</span>
+                                </button>
+                            </div>
+                            <div class="control">
+                                <button (click)="toggleAlphaSort(false)"
+                                    [ngClass]="{'mt-1' : (breakPoint$ |async), 'is-focused' : (alphaSortAsc$ | async) === false}"
+                                    class="button is-link is-outlined is-fullwidth">
+                                    <span>Z ➔ A</span>
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="container bd-menu mt-2">
+                        <span class="menu-label">
+                            Genre filters
+                        </span>
+                        <div class="field pt-2 bd-tags-container">
+                            <app-genre-filter (selectedOptionsChanged)="updateFilters($event)">
+                            </app-genre-filter>
+                        </div>
+
+                    </section>
+
+                </app-side-menu>
+            </ng-container>
+        </div>
+        <div class="column">
+            <section id="main">
+                <div class="container">
+                    <ng-container *ngIf='allShows$ | async as data'>
+                        <cdk-virtual-scroll-viewport autosize
+                            [maxBufferPx]="200"
+                            [minBufferPx]="200      "
+                            class="scroll-viewport pb-2">
+                            <div *cdkVirtualFor='let row of data; trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
+                                class="columns is-multiline px-1">
+                                <app-show-card class="column is-4"
+                                    *ngFor='let item of row'
+                                    [show]=item></app-show-card>
+                            </div>
+                        </cdk-virtual-scroll-viewport>
+                    </ng-container>
                 </div>
-                <div class="field column">
-                    <p class="control">
-                        <input type="search"
-                            id="site-search"
-                            class="input"
-                            [ngModel]="genre"
-                            (ngModelChange)="updateSearch($event)"
-                            placeholder="Filter by genre"
-                            name="q"
-                            aria-label="Search shows by gener">
-
-                    </p>
-                </div>
-            </div>
-        </ng-container>
-
-
-    </div>
-</section>
-
-
-<section id="main">
-    <div class="container">
-        <ng-container *ngIf='allShows$ | async as data'>
-            <cdk-virtual-scroll-viewport autosize
-                [maxBufferPx]="800"
-                [minBufferPx]="800"
-                class="scroll-viewport pb-2">
-                <div *cdkVirtualFor='let row of data;trackBy: trackByFn; let idx = index;  templateCacheSize:0;'
-                    class="columns is-multiline px-1">
-                    <app-show-card class="column is-4"
-                        *ngFor='let item of row'
-                        [show]=item></app-show-card>
-                </div>
-            </cdk-virtual-scroll-viewport>
-        </ng-container>
+            </section>
+        </div>
     </div>
 </section>
